@@ -9,7 +9,8 @@
         // Adiciona Java e Maven
         "ghcr.io/devcontainers/features/java:1": {
             "version": "21",
-            "installMaven": "false",
+            "installMaven": "true",
+            "mavenVersion": "3.9.8",
             "installGradle": "false"
         },
         // Adiciona Python
