@@ -1,0 +1,45 @@
+{
+    "name": "Java & Python gRPC Project",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+
+    // 'features' para adicionar linguagens e ferramentas de forma modular.
+    "features": {
+        // Adiciona Java e Maven
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "21",
+            "installMaven": "false",
+            "installGradle": "false"
+        },
+        // Adiciona Python
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.10"
+        }
+    },
+
+    // Extensões do VS Code para instalar dentro do contêiner
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "ms-python.python",
+                "ms-azuretools.vscode-docker",
+                "zxh404.vscode-proto3"
+            ]
+        }
+    },
+
+    // Mapeia a porta do nosso servidor gRPC para a máquina local. Essencial para testes!
+    "forwardPorts": [50051],
+
+	// Comando a ser executado após a criação do contêiner.
+	// 1. Cria o ambiente virtual.
+	// 2. Ativa o ambiente virtual (compatível com Linux/macOS e Windows).
+	// 3. Instala as dependências Python do projeto a partir de um 'requirements.txt'.
+
+	"postCreateCommand": "python3 -m venv .venv && (source .venv/bin/activate || source .venv/Scripts/activate) && pip install -r 'Atividade 3/projeto-gRPC-IoT/requirements.txt'",
+    
+    // Define o usuário remoto para ser não-root
+    "remoteUser": "vscode"
+}
