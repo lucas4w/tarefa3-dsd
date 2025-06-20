@@ -1,0 +1,8 @@
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/src/main/java/br/com/grpc/iot/MonitorServer.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/src/main/java/br/com/grpc/iot/MonitorServiceImpl.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/grpc-java/br/com/grpc/iot/MonitorServiceGrpc.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/Contrato.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/SensorData.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/SensorDataOrBuilder.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/StatusResposta.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/StatusRespostaOrBuilder.java

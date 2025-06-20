@@ -32,14 +32,14 @@
     },
 
     // Mapeia a porta do nosso servidor gRPC para a máquina local. Essencial para testes!
-    "forwardPorts": [50051]
+    "forwardPorts": [50051] //,
 
 	// Comando a ser executado após a criação do contêiner.
 	// 1. Cria o ambiente virtual.
 	// 2. Ativa o ambiente virtual (compatível com Linux/macOS e Windows).
 	// 3. Instala as dependências Python do projeto a partir de um 'requirements.txt'.
 
-    // "postCreateCommand": "python3 -m venv .venv && (source .venv/bin/activate || source .venv/Scripts/activate) && pip install -r 'Atividade 3/projeto-gRPC-IoT/requirements.txt'",
+    // "postCreateCommand": "python3 -m venv .venv && (source .venv/bin/activate || source .venv/Scripts/activate) && pip install -r 'Atividade3/projeto-gRPC-IoT/requirements.txt'",
     
     // Define o usuário remoto para ser não-root
     // "remoteUser": "vscode"
