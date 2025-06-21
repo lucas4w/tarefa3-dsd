@@ -1,0 +1,5 @@
+1. Aumentar e melhorar as opções de sensores: deixar os clientes escolherem que tipo de sensor (dentro de uma categoria), desejam usar.
+
+2. Fazer novos testes, tendo em vista que os arquivos gRPCs já estão criados e utilizáveis.
+
+3. 
