@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from servico_java_monitor.src.main.proto import contrato_pb2 as servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2
+import contrato_pb2 as contrato__pb2
 
 GRPC_GENERATED_VERSION = '1.73.0'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in servico_java_monitor/src/main/proto/contrato_pb2_grpc.py depends on'
+        + f' but the generated code in contrato_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -37,8 +37,8 @@ class MonitorServiceStub(object):
         """
         self.EnviarDadosSensor = channel.stream_unary(
                 '/MonitorService/EnviarDadosSensor',
-                request_serializer=servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2.SensorData.SerializeToString,
-                response_deserializer=servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2.StatusResposta.FromString,
+                request_serializer=contrato__pb2.SensorData.SerializeToString,
+                response_deserializer=contrato__pb2.StatusResposta.FromString,
                 _registered_method=True)
 
 
@@ -60,8 +60,8 @@ def add_MonitorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'EnviarDadosSensor': grpc.stream_unary_rpc_method_handler(
                     servicer.EnviarDadosSensor,
-                    request_deserializer=servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2.SensorData.FromString,
-                    response_serializer=servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2.StatusResposta.SerializeToString,
+                    request_deserializer=contrato__pb2.SensorData.FromString,
+                    response_serializer=contrato__pb2.StatusResposta.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -90,8 +90,8 @@ class MonitorService(object):
             request_iterator,
             target,
             '/MonitorService/EnviarDadosSensor',
-            servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2.SensorData.SerializeToString,
-            servico__java__monitor_dot_src_dot_main_dot_proto_dot_contrato__pb2.StatusResposta.FromString,
+            contrato__pb2.SensorData.SerializeToString,
+            contrato__pb2.StatusResposta.FromString,
             options,
             channel_credentials,
             insecure,
