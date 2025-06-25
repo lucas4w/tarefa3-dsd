@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ontrato.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"t\n\nSensorData\x12\x11\n\tsensor_id\x18\x01 \x01(\t\x12\x13\n\x0btemperatura\x18\x02 \x01(\x02\x12\x0f\n\x07umidade\x18\x03 \x01(\x02\x12-\n\ttimestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"D\n\x0eStatusResposta\x12\x10\n\x08mensagem\x18\x01 \x01(\t\x12 \n\x18total_leituras_recebidas\x18\x02 \x01(\x05\x32\x45\n\x0eMonitorService\x12\x33\n\x11\x45nviarDadosSensor\x12\x0b.SensorData\x1a\x0f.StatusResposta(\x01\x42\x13\n\x0f\x62r.com.grpc.iotP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ontrato.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"6\n\x17RegistrarUsuarioRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x0c\n\x04nome\x18\x02 \x01(\t\"Q\n\x18RegistrarUsuarioResponse\x12\x10\n\x08mensagem\x18\x01 \x01(\t\x12\x12\n\nusuario_id\x18\x02 \x01(\x03\x12\x0f\n\x07sucesso\x18\x03 \x01(\x08\"M\n\x16RegistrarSensorRequest\x12\x12\n\nusuario_id\x18\x01 \x01(\x03\x12\x0c\n\x04nome\x18\x02 \x01(\t\x12\x11\n\tdescricao\x18\x03 \x01(\t\"O\n\x17RegistrarSensorResponse\x12\x10\n\x08mensagem\x18\x01 \x01(\t\x12\x11\n\tsensor_id\x18\x02 \x01(\t\x12\x0f\n\x07sucesso\x18\x03 \x01(\x08\"t\n\nSensorData\x12\x11\n\tsensor_id\x18\x01 \x01(\t\x12\x13\n\x0btemperatura\x18\x02 \x01(\x02\x12\x0f\n\x07umidade\x18\x03 \x01(\x02\x12-\n\ttimestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"U\n\x0eStatusResposta\x12\x10\n\x08mensagem\x18\x01 \x01(\t\x12 \n\x18total_leituras_recebidas\x18\x02 \x01(\x05\x12\x0f\n\x07sucesso\x18\x03 \x01(\x08\x32\xd2\x01\n\x0eMonitorService\x12G\n\x10RegistrarUsuario\x12\x18.RegistrarUsuarioRequest\x1a\x19.RegistrarUsuarioResponse\x12\x44\n\x0fRegistrarSensor\x12\x17.RegistrarSensorRequest\x1a\x18.RegistrarSensorResponse\x12\x31\n\x11\x45nviarDadosSensor\x12\x0b.SensorData\x1a\x0f.StatusRespostaB\x13\n\x0f\x62r.com.grpc.iotP\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,10 +33,18 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'contrato_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n\017br.com.grpc.iotP\001'
-  _globals['_SENSORDATA']._serialized_start=51
-  _globals['_SENSORDATA']._serialized_end=167
-  _globals['_STATUSRESPOSTA']._serialized_start=169
-  _globals['_STATUSRESPOSTA']._serialized_end=237
-  _globals['_MONITORSERVICE']._serialized_start=239
-  _globals['_MONITORSERVICE']._serialized_end=308
+  _globals['_REGISTRARUSUARIOREQUEST']._serialized_start=51
+  _globals['_REGISTRARUSUARIOREQUEST']._serialized_end=105
+  _globals['_REGISTRARUSUARIORESPONSE']._serialized_start=107
+  _globals['_REGISTRARUSUARIORESPONSE']._serialized_end=188
+  _globals['_REGISTRARSENSORREQUEST']._serialized_start=190
+  _globals['_REGISTRARSENSORREQUEST']._serialized_end=267
+  _globals['_REGISTRARSENSORRESPONSE']._serialized_start=269
+  _globals['_REGISTRARSENSORRESPONSE']._serialized_end=348
+  _globals['_SENSORDATA']._serialized_start=350
+  _globals['_SENSORDATA']._serialized_end=466
+  _globals['_STATUSRESPOSTA']._serialized_start=468
+  _globals['_STATUSRESPOSTA']._serialized_end=553
+  _globals['_MONITORSERVICE']._serialized_start=556
+  _globals['_MONITORSERVICE']._serialized_end=766
 # @@protoc_insertion_point(module_scope)

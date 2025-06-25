@@ -25,4 +25,14 @@ public interface StatusRespostaOrBuilder extends
    * @return The totalLeiturasRecebidas.
    */
   int getTotalLeiturasRecebidas();
+
+  /**
+   * <pre>
+   * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
+   * </pre>
+   *
+   * <code>bool sucesso = 3;</code>
+   * @return The sucesso.
+   */
+  boolean getSucesso();
 }

@@ -16,6 +16,26 @@ public final class Contrato {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RegistrarUsuarioRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RegistrarUsuarioRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RegistrarUsuarioResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RegistrarUsuarioResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RegistrarSensorRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RegistrarSensorRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_RegistrarSensorResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_RegistrarSensorResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_SensorData_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -35,32 +55,67 @@ public final class Contrato {
   static {
     java.lang.String[] descriptorData = {
       "\n\016contrato.proto\032\037google/protobuf/timest" +
-      "amp.proto\"t\n\nSensorData\022\021\n\tsensor_id\030\001 \001" +
-      "(\t\022\023\n\013temperatura\030\002 \001(\002\022\017\n\007umidade\030\003 \001(\002" +
-      "\022-\n\ttimestamp\030\004 \001(\0132\032.google.protobuf.Ti" +
-      "mestamp\"D\n\016StatusResposta\022\020\n\010mensagem\030\001 " +
-      "\001(\t\022 \n\030total_leituras_recebidas\030\002 \001(\0052E\n" +
-      "\016MonitorService\0223\n\021EnviarDadosSensor\022\013.S" +
-      "ensorData\032\017.StatusResposta(\001B\023\n\017br.com.g" +
-      "rpc.iotP\001b\006proto3"
+      "amp.proto\"6\n\027RegistrarUsuarioRequest\022\r\n\005" +
+      "email\030\001 \001(\t\022\014\n\004nome\030\002 \001(\t\"Q\n\030RegistrarUs" +
+      "uarioResponse\022\020\n\010mensagem\030\001 \001(\t\022\022\n\nusuar" +
+      "io_id\030\002 \001(\003\022\017\n\007sucesso\030\003 \001(\010\"M\n\026Registra" +
+      "rSensorRequest\022\022\n\nusuario_id\030\001 \001(\003\022\014\n\004no" +
+      "me\030\002 \001(\t\022\021\n\tdescricao\030\003 \001(\t\"O\n\027Registrar" +
+      "SensorResponse\022\020\n\010mensagem\030\001 \001(\t\022\021\n\tsens" +
+      "or_id\030\002 \001(\t\022\017\n\007sucesso\030\003 \001(\010\"t\n\nSensorDa" +
+      "ta\022\021\n\tsensor_id\030\001 \001(\t\022\023\n\013temperatura\030\002 \001" +
+      "(\002\022\017\n\007umidade\030\003 \001(\002\022-\n\ttimestamp\030\004 \001(\0132\032" +
+      ".google.protobuf.Timestamp\"U\n\016StatusResp" +
+      "osta\022\020\n\010mensagem\030\001 \001(\t\022 \n\030total_leituras" +
+      "_recebidas\030\002 \001(\005\022\017\n\007sucesso\030\003 \001(\0102\322\001\n\016Mo" +
+      "nitorService\022G\n\020RegistrarUsuario\022\030.Regis" +
+      "trarUsuarioRequest\032\031.RegistrarUsuarioRes" +
+      "ponse\022D\n\017RegistrarSensor\022\027.RegistrarSens" +
+      "orRequest\032\030.RegistrarSensorResponse\0221\n\021E" +
+      "nviarDadosSensor\022\013.SensorData\032\017.StatusRe" +
+      "spostaB\023\n\017br.com.grpc.iotP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
-    internal_static_SensorData_descriptor =
+    internal_static_RegistrarUsuarioRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_RegistrarUsuarioRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RegistrarUsuarioRequest_descriptor,
+        new java.lang.String[] { "Email", "Nome", });
+    internal_static_RegistrarUsuarioResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_RegistrarUsuarioResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RegistrarUsuarioResponse_descriptor,
+        new java.lang.String[] { "Mensagem", "UsuarioId", "Sucesso", });
+    internal_static_RegistrarSensorRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_RegistrarSensorRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RegistrarSensorRequest_descriptor,
+        new java.lang.String[] { "UsuarioId", "Nome", "Descricao", });
+    internal_static_RegistrarSensorResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_RegistrarSensorResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_RegistrarSensorResponse_descriptor,
+        new java.lang.String[] { "Mensagem", "SensorId", "Sucesso", });
+    internal_static_SensorData_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_SensorData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SensorData_descriptor,
         new java.lang.String[] { "SensorId", "Temperatura", "Umidade", "Timestamp", });
     internal_static_StatusResposta_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_StatusResposta_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_StatusResposta_descriptor,
-        new java.lang.String[] { "Mensagem", "TotalLeiturasRecebidas", });
+        new java.lang.String[] { "Mensagem", "TotalLeiturasRecebidas", "Sucesso", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

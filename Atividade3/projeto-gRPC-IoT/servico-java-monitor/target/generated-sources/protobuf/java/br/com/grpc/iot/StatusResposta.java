@@ -6,7 +6,7 @@ package br.com.grpc.iot;
 
 /**
  * <pre>
- * A mensagem de resposta que o servidor enviará após receber todo o fluxo.
+ * A mensagem de resposta que o servidor enviará após receber a requisição.
  * </pre>
  *
  * Protobuf type {@code StatusResposta}
@@ -94,6 +94,21 @@ private static final long serialVersionUID = 0L;
     return totalLeiturasRecebidas_;
   }
 
+  public static final int SUCESSO_FIELD_NUMBER = 3;
+  private boolean sucesso_ = false;
+  /**
+   * <pre>
+   * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
+   * </pre>
+   *
+   * <code>bool sucesso = 3;</code>
+   * @return The sucesso.
+   */
+  @java.lang.Override
+  public boolean getSucesso() {
+    return sucesso_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -114,6 +129,9 @@ private static final long serialVersionUID = 0L;
     if (totalLeiturasRecebidas_ != 0) {
       output.writeInt32(2, totalLeiturasRecebidas_);
     }
+    if (sucesso_ != false) {
+      output.writeBool(3, sucesso_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -129,6 +147,10 @@ private static final long serialVersionUID = 0L;
     if (totalLeiturasRecebidas_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, totalLeiturasRecebidas_);
+    }
+    if (sucesso_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(3, sucesso_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -149,6 +171,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getMensagem())) return false;
     if (getTotalLeiturasRecebidas()
         != other.getTotalLeiturasRecebidas()) return false;
+    if (getSucesso()
+        != other.getSucesso()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -164,6 +188,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getMensagem().hashCode();
     hash = (37 * hash) + TOTAL_LEITURAS_RECEBIDAS_FIELD_NUMBER;
     hash = (53 * hash) + getTotalLeiturasRecebidas();
+    hash = (37 * hash) + SUCESSO_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getSucesso());
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -263,7 +290,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * A mensagem de resposta que o servidor enviará após receber todo o fluxo.
+   * A mensagem de resposta que o servidor enviará após receber a requisição.
    * </pre>
    *
    * Protobuf type {@code StatusResposta}
@@ -301,6 +328,7 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       mensagem_ = "";
       totalLeiturasRecebidas_ = 0;
+      sucesso_ = false;
       return this;
     }
 
@@ -339,6 +367,9 @@ private static final long serialVersionUID = 0L;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
         result.totalLeiturasRecebidas_ = totalLeiturasRecebidas_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.sucesso_ = sucesso_;
       }
     }
 
@@ -394,6 +425,9 @@ private static final long serialVersionUID = 0L;
       if (other.getTotalLeiturasRecebidas() != 0) {
         setTotalLeiturasRecebidas(other.getTotalLeiturasRecebidas());
       }
+      if (other.getSucesso() != false) {
+        setSucesso(other.getSucesso());
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -430,6 +464,11 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 16
+            case 24: {
+              sucesso_ = input.readBool();
+              bitField0_ |= 0x00000004;
+              break;
+            } // case 24
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -547,6 +586,50 @@ private static final long serialVersionUID = 0L;
     public Builder clearTotalLeiturasRecebidas() {
       bitField0_ = (bitField0_ & ~0x00000002);
       totalLeiturasRecebidas_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private boolean sucesso_ ;
+    /**
+     * <pre>
+     * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
+     * </pre>
+     *
+     * <code>bool sucesso = 3;</code>
+     * @return The sucesso.
+     */
+    @java.lang.Override
+    public boolean getSucesso() {
+      return sucesso_;
+    }
+    /**
+     * <pre>
+     * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
+     * </pre>
+     *
+     * <code>bool sucesso = 3;</code>
+     * @param value The sucesso to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSucesso(boolean value) {
+
+      sucesso_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
+     * </pre>
+     *
+     * <code>bool sucesso = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSucesso() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      sucesso_ = false;
       onChanged();
       return this;
     }

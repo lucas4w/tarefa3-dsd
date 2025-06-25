@@ -35,7 +35,17 @@ class MonitorServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.EnviarDadosSensor = channel.stream_unary(
+        self.RegistrarUsuario = channel.unary_unary(
+                '/MonitorService/RegistrarUsuario',
+                request_serializer=contrato__pb2.RegistrarUsuarioRequest.SerializeToString,
+                response_deserializer=contrato__pb2.RegistrarUsuarioResponse.FromString,
+                _registered_method=True)
+        self.RegistrarSensor = channel.unary_unary(
+                '/MonitorService/RegistrarSensor',
+                request_serializer=contrato__pb2.RegistrarSensorRequest.SerializeToString,
+                response_deserializer=contrato__pb2.RegistrarSensorResponse.FromString,
+                _registered_method=True)
+        self.EnviarDadosSensor = channel.unary_unary(
                 '/MonitorService/EnviarDadosSensor',
                 request_serializer=contrato__pb2.SensorData.SerializeToString,
                 response_deserializer=contrato__pb2.StatusResposta.FromString,
@@ -46,10 +56,23 @@ class MonitorServiceServicer(object):
     """Definição do nosso serviço de monitoramento.
     """
 
-    def EnviarDadosSensor(self, request_iterator, context):
-        """O cliente envia um FLUXO (stream) de dados do sensor e, ao final,
-        o servidor retorna um único StatusResposta.
-        Esta é a definição de um "Client Streaming RPC".
+    def RegistrarUsuario(self, request, context):
+        """Novo método para registrar um usuário
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RegistrarSensor(self, request, context):
+        """Novo método para registrar um sensor para um usuário
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EnviarDadosSensor(self, request, context):
+        """O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
+        Esta é a definição de um "Unary RPC".
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -58,7 +81,17 @@ class MonitorServiceServicer(object):
 
 def add_MonitorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'EnviarDadosSensor': grpc.stream_unary_rpc_method_handler(
+            'RegistrarUsuario': grpc.unary_unary_rpc_method_handler(
+                    servicer.RegistrarUsuario,
+                    request_deserializer=contrato__pb2.RegistrarUsuarioRequest.FromString,
+                    response_serializer=contrato__pb2.RegistrarUsuarioResponse.SerializeToString,
+            ),
+            'RegistrarSensor': grpc.unary_unary_rpc_method_handler(
+                    servicer.RegistrarSensor,
+                    request_deserializer=contrato__pb2.RegistrarSensorRequest.FromString,
+                    response_serializer=contrato__pb2.RegistrarSensorResponse.SerializeToString,
+            ),
+            'EnviarDadosSensor': grpc.unary_unary_rpc_method_handler(
                     servicer.EnviarDadosSensor,
                     request_deserializer=contrato__pb2.SensorData.FromString,
                     response_serializer=contrato__pb2.StatusResposta.SerializeToString,
@@ -76,7 +109,7 @@ class MonitorService(object):
     """
 
     @staticmethod
-    def EnviarDadosSensor(request_iterator,
+    def RegistrarUsuario(request,
             target,
             options=(),
             channel_credentials=None,
@@ -86,8 +119,62 @@ class MonitorService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(
-            request_iterator,
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MonitorService/RegistrarUsuario',
+            contrato__pb2.RegistrarUsuarioRequest.SerializeToString,
+            contrato__pb2.RegistrarUsuarioResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RegistrarSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MonitorService/RegistrarSensor',
+            contrato__pb2.RegistrarSensorRequest.SerializeToString,
+            contrato__pb2.RegistrarSensorResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def EnviarDadosSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
             target,
             '/MonitorService/EnviarDadosSensor',
             contrato__pb2.SensorData.SerializeToString,
