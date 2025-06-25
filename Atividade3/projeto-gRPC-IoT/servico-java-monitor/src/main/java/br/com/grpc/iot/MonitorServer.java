@@ -11,12 +11,24 @@ import javax.persistence.Persistence; // Importe para criar o EntityManagerFacto
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.sql.SQLException;
+// import org.h2.tools.Server;
 
 public class MonitorServer {
 
     private static EntityManagerFactory emf;
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        try {
+            org.h2.tools.Server h2Server = org.h2.tools.Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082");
+            h2Server.start();
+            System.out.println("✅ Servidor web H2 iniciado em http://localhost:8082");
+        } catch (SQLException e) {
+            System.err.println("❌ Erro fatal ao iniciar o servidor H2. A porta pode já estar em uso.");
+            e.printStackTrace();
+            return; // Encerra a aplicação se o banco de dados não puder iniciar
+        }
+        
         int port = 50051;
 
         // 1. Inicializa o EntityManagerFactory uma única vez
