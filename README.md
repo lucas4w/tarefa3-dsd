@@ -9,7 +9,7 @@ O projeto é um exemplo prático de uma arquitetura de microsserviços **poliglo
 Para os testes em sala de aula, operaremos no seguinte modelo:
 
 -   **Um Servidor central:** executará o microsserviço do `servico-java-monitor`, um painel de monitoramento que receberá os dados de todos os sensores.
--   **Múltiplos Clientes:** colegas e professor executarão o microsserviço `servico-python-simulador` em suas próprias máquinas. Cada cliente atuará como um sensor IoT, enviando um fluxo contínuo de dados para o servidor central através da rede local.
+-   **Múltiplos Clientes:** colegas e professor executarão o microsserviço `servico-python-simulador` em suas próprias máquinas. Cada cliente atuará como um sensor IoT, enviando um fluxo de dados para o servidor central através da rede local.
 
 ```
                     +--------------------------------+
@@ -47,17 +47,16 @@ Antes de começar, garanta que você tenha os seguintes programas instalados:
 1.  **Clone o Repositório:** Abra um terminal ou prompt de comando e execute o comando abaixo para baixar o projeto.
     ```bash
     git clone https://github.com/lucas-pinheiro-costa/tarefa3-dsd.git
-    cd Atividade3/projeto-gRPC-IoT
+    cd Atividade3/projeto-gRPC-IoT/servico-python-simulador/
     ```
 
 2.  **Crie e ative um Ambiente Virtual:**
     ```bash
     # Cria o ambiente virtual
     python -m venv .venv
-
-    # Ativa o ambiente virtual
+    
     # No Windows:
-    source .venv\Scripts\activate
+    .venv\Scripts\activate
     # No Linux ou macOS:
     source .venv/bin/activate
     ```
@@ -72,29 +71,36 @@ Antes de começar, garanta que você tenha os seguintes programas instalados:
 
 4.  **Configure o IP do Servidor:** Esta é a etapa mais importante! Você precisa dizer ao seu cliente para onde enviar os dados.
     -   Abra o arquivo `sensor_client.py` com um editor.
-    -   Encontre a linha que contém `grpc.insecure_channel`.
-    -   Substitua `'localhost:50051'` pelo **endereço IP do Servidor a ser fornecido**, mantendo a porta `50051`.
+    -   Encontre a linha que contém `SERVER_ADDRESS = 'localhost:50051'`.
+    -   Substitua `localhost` pelo **endereço IP do Servidor a ser fornecido**, mantendo a porta `50051`.
 
     ```python
     # Linha original
-    # with grpc.insecure_channel('localhost:50051') as channel:
+    # SERVER_ADDRESS = 'localhost:50051'
 
     # Exemplo de como deve ficar (substitua pelo IP fornecido)
-    with grpc.insecure_channel('XXX.XXX.X.XXX:50051') as channel:
+    SERVER_ADDRESS = 'XXX.XXX.X.XXX:50051'
     ```
 
 5.  **Execute o Cliente:** com tudo configurado, execute o script!
     ```bash
-    python servico-python-simulador/sensor_client.py
+    python sensor_client.py
     ```
 
-6.  **Verifique a saída:** seu terminal começará a exibir mensagens indicando o envio dos dados do sensor. Parabéns, você está conectado ao servidor e enviando dados em tempo real!
+6.  **Verifique a saída:** seu terminal começará a exibir mensagens para que você possa registrar um usuário utilizando e-mail e senha, criar um sensor e dá-lhe uma descrição e, por fim, registrar dados nesse(s) sensor(es) cadastrado(s), os quais aparecerão no Monitor (terminal do Servidor).
 
     ```
-    Conectado ao servidor gRPC. Iniciando o envio de dados...
-    Iniciando simulação do sensor 'cozinha-temp-1'. Pressione Ctrl+C para parar.
-      -> Enviando: Temp=28.12°C, Umid=45.91%
-      -> Enviando: Temp=33.45°C, Umid=51.22%
+    Resposta do servidor: mensagem: "Usuário registrado com sucesso!" usuario_id: 1 sucesso: true
+
+    Resposta do servidor: mensagem: "Sensor registrado com sucesso!" sensor_id: "a1b2c3d4-e5f6-4a3b-8c7d-1e2f3a4b5c6d" sucesso: true
+
+    Iniciando simulação do sensor 'a1b2c3d4-e5f6-4a3b-8c7d-1e2f3a4b5c6d'. Pressione Ctrl+C para parar.
+    -> Enviando: Temp=28.12°C, Umid=45.91%
+
+    Resposta do servidor: mensagem: "Dado recebido e salvo com sucesso." sucesso: true
+    -> Enviando: Temp=33.45°C, Umid=51.22%
+    
+    Resposta do servidor: mensagem: "Dado recebido e salvo com sucesso." sucesso: true
     ```
 
 <br>
@@ -120,6 +126,7 @@ Para iniciar o servidor na sua máquina e permitir que os clientes se conectem, 
 
 4.  **Execute o Servidor Java:**
     ```bash
+    mvn clean install
     mvn exec:java -Dexec.mainClass="br.com.grpc.iot.MonitorServer"
     ```
 
