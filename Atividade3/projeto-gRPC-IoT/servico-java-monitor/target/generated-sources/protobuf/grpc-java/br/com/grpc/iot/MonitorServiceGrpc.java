@@ -18,6 +18,68 @@ public final class MonitorServiceGrpc {
   public static final java.lang.String SERVICE_NAME = "MonitorService";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<br.com.grpc.iot.RegistrarUsuarioRequest,
+      br.com.grpc.iot.RegistrarUsuarioResponse> getRegistrarUsuarioMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RegistrarUsuario",
+      requestType = br.com.grpc.iot.RegistrarUsuarioRequest.class,
+      responseType = br.com.grpc.iot.RegistrarUsuarioResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<br.com.grpc.iot.RegistrarUsuarioRequest,
+      br.com.grpc.iot.RegistrarUsuarioResponse> getRegistrarUsuarioMethod() {
+    io.grpc.MethodDescriptor<br.com.grpc.iot.RegistrarUsuarioRequest, br.com.grpc.iot.RegistrarUsuarioResponse> getRegistrarUsuarioMethod;
+    if ((getRegistrarUsuarioMethod = MonitorServiceGrpc.getRegistrarUsuarioMethod) == null) {
+      synchronized (MonitorServiceGrpc.class) {
+        if ((getRegistrarUsuarioMethod = MonitorServiceGrpc.getRegistrarUsuarioMethod) == null) {
+          MonitorServiceGrpc.getRegistrarUsuarioMethod = getRegistrarUsuarioMethod =
+              io.grpc.MethodDescriptor.<br.com.grpc.iot.RegistrarUsuarioRequest, br.com.grpc.iot.RegistrarUsuarioResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RegistrarUsuario"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.RegistrarUsuarioRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.RegistrarUsuarioResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MonitorServiceMethodDescriptorSupplier("RegistrarUsuario"))
+              .build();
+        }
+      }
+    }
+    return getRegistrarUsuarioMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<br.com.grpc.iot.RegistrarSensorRequest,
+      br.com.grpc.iot.RegistrarSensorResponse> getRegistrarSensorMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RegistrarSensor",
+      requestType = br.com.grpc.iot.RegistrarSensorRequest.class,
+      responseType = br.com.grpc.iot.RegistrarSensorResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<br.com.grpc.iot.RegistrarSensorRequest,
+      br.com.grpc.iot.RegistrarSensorResponse> getRegistrarSensorMethod() {
+    io.grpc.MethodDescriptor<br.com.grpc.iot.RegistrarSensorRequest, br.com.grpc.iot.RegistrarSensorResponse> getRegistrarSensorMethod;
+    if ((getRegistrarSensorMethod = MonitorServiceGrpc.getRegistrarSensorMethod) == null) {
+      synchronized (MonitorServiceGrpc.class) {
+        if ((getRegistrarSensorMethod = MonitorServiceGrpc.getRegistrarSensorMethod) == null) {
+          MonitorServiceGrpc.getRegistrarSensorMethod = getRegistrarSensorMethod =
+              io.grpc.MethodDescriptor.<br.com.grpc.iot.RegistrarSensorRequest, br.com.grpc.iot.RegistrarSensorResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RegistrarSensor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.RegistrarSensorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.RegistrarSensorResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MonitorServiceMethodDescriptorSupplier("RegistrarSensor"))
+              .build();
+        }
+      }
+    }
+    return getRegistrarSensorMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<br.com.grpc.iot.SensorData,
       br.com.grpc.iot.StatusResposta> getEnviarDadosSensorMethod;
 
@@ -25,7 +87,7 @@ public final class MonitorServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "EnviarDadosSensor",
       requestType = br.com.grpc.iot.SensorData.class,
       responseType = br.com.grpc.iot.StatusResposta.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<br.com.grpc.iot.SensorData,
       br.com.grpc.iot.StatusResposta> getEnviarDadosSensorMethod() {
     io.grpc.MethodDescriptor<br.com.grpc.iot.SensorData, br.com.grpc.iot.StatusResposta> getEnviarDadosSensorMethod;
@@ -34,7 +96,7 @@ public final class MonitorServiceGrpc {
         if ((getEnviarDadosSensorMethod = MonitorServiceGrpc.getEnviarDadosSensorMethod) == null) {
           MonitorServiceGrpc.getEnviarDadosSensorMethod = getEnviarDadosSensorMethod =
               io.grpc.MethodDescriptor.<br.com.grpc.iot.SensorData, br.com.grpc.iot.StatusResposta>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "EnviarDadosSensor"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -102,14 +164,33 @@ public final class MonitorServiceGrpc {
 
     /**
      * <pre>
-     * O cliente envia um FLUXO (stream) de dados do sensor e, ao final,
-     * o servidor retorna um único StatusResposta.
-     * Esta é a definição de um "Client Streaming RPC".
+     * Novo método para registrar um usuário
      * </pre>
      */
-    default io.grpc.stub.StreamObserver<br.com.grpc.iot.SensorData> enviarDadosSensor(
+    default void registrarUsuario(br.com.grpc.iot.RegistrarUsuarioRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.RegistrarUsuarioResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRegistrarUsuarioMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Novo método para registrar um sensor para um usuário
+     * </pre>
+     */
+    default void registrarSensor(br.com.grpc.iot.RegistrarSensorRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.RegistrarSensorResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRegistrarSensorMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
+     * Esta é a definição de um "Unary RPC".
+     * </pre>
+     */
+    default void enviarDadosSensor(br.com.grpc.iot.SensorData request,
         io.grpc.stub.StreamObserver<br.com.grpc.iot.StatusResposta> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getEnviarDadosSensorMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEnviarDadosSensorMethod(), responseObserver);
     }
   }
 
@@ -148,15 +229,36 @@ public final class MonitorServiceGrpc {
 
     /**
      * <pre>
-     * O cliente envia um FLUXO (stream) de dados do sensor e, ao final,
-     * o servidor retorna um único StatusResposta.
-     * Esta é a definição de um "Client Streaming RPC".
+     * Novo método para registrar um usuário
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<br.com.grpc.iot.SensorData> enviarDadosSensor(
+    public void registrarUsuario(br.com.grpc.iot.RegistrarUsuarioRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.RegistrarUsuarioResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRegistrarUsuarioMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Novo método para registrar um sensor para um usuário
+     * </pre>
+     */
+    public void registrarSensor(br.com.grpc.iot.RegistrarSensorRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.RegistrarSensorResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRegistrarSensorMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
+     * Esta é a definição de um "Unary RPC".
+     * </pre>
+     */
+    public void enviarDadosSensor(br.com.grpc.iot.SensorData request,
         io.grpc.stub.StreamObserver<br.com.grpc.iot.StatusResposta> responseObserver) {
-      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-          getChannel().newCall(getEnviarDadosSensorMethod(), getCallOptions()), responseObserver);
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getEnviarDadosSensorMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -178,6 +280,37 @@ public final class MonitorServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new MonitorServiceBlockingStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     * Novo método para registrar um usuário
+     * </pre>
+     */
+    public br.com.grpc.iot.RegistrarUsuarioResponse registrarUsuario(br.com.grpc.iot.RegistrarUsuarioRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRegistrarUsuarioMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Novo método para registrar um sensor para um usuário
+     * </pre>
+     */
+    public br.com.grpc.iot.RegistrarSensorResponse registrarSensor(br.com.grpc.iot.RegistrarSensorRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRegistrarSensorMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
+     * Esta é a definição de um "Unary RPC".
+     * </pre>
+     */
+    public br.com.grpc.iot.StatusResposta enviarDadosSensor(br.com.grpc.iot.SensorData request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getEnviarDadosSensorMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -198,9 +331,45 @@ public final class MonitorServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new MonitorServiceFutureStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     * Novo método para registrar um usuário
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.grpc.iot.RegistrarUsuarioResponse> registrarUsuario(
+        br.com.grpc.iot.RegistrarUsuarioRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRegistrarUsuarioMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Novo método para registrar um sensor para um usuário
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.grpc.iot.RegistrarSensorResponse> registrarSensor(
+        br.com.grpc.iot.RegistrarSensorRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRegistrarSensorMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
+     * Esta é a definição de um "Unary RPC".
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.grpc.iot.StatusResposta> enviarDadosSensor(
+        br.com.grpc.iot.SensorData request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getEnviarDadosSensorMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_ENVIAR_DADOS_SENSOR = 0;
+  private static final int METHODID_REGISTRAR_USUARIO = 0;
+  private static final int METHODID_REGISTRAR_SENSOR = 1;
+  private static final int METHODID_ENVIAR_DADOS_SENSOR = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -219,6 +388,18 @@ public final class MonitorServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_REGISTRAR_USUARIO:
+          serviceImpl.registrarUsuario((br.com.grpc.iot.RegistrarUsuarioRequest) request,
+              (io.grpc.stub.StreamObserver<br.com.grpc.iot.RegistrarUsuarioResponse>) responseObserver);
+          break;
+        case METHODID_REGISTRAR_SENSOR:
+          serviceImpl.registrarSensor((br.com.grpc.iot.RegistrarSensorRequest) request,
+              (io.grpc.stub.StreamObserver<br.com.grpc.iot.RegistrarSensorResponse>) responseObserver);
+          break;
+        case METHODID_ENVIAR_DADOS_SENSOR:
+          serviceImpl.enviarDadosSensor((br.com.grpc.iot.SensorData) request,
+              (io.grpc.stub.StreamObserver<br.com.grpc.iot.StatusResposta>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -229,9 +410,6 @@ public final class MonitorServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_ENVIAR_DADOS_SENSOR:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.enviarDadosSensor(
-              (io.grpc.stub.StreamObserver<br.com.grpc.iot.StatusResposta>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -241,8 +419,22 @@ public final class MonitorServiceGrpc {
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
+          getRegistrarUsuarioMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              br.com.grpc.iot.RegistrarUsuarioRequest,
+              br.com.grpc.iot.RegistrarUsuarioResponse>(
+                service, METHODID_REGISTRAR_USUARIO)))
+        .addMethod(
+          getRegistrarSensorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              br.com.grpc.iot.RegistrarSensorRequest,
+              br.com.grpc.iot.RegistrarSensorResponse>(
+                service, METHODID_REGISTRAR_SENSOR)))
+        .addMethod(
           getEnviarDadosSensorMethod(),
-          io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               br.com.grpc.iot.SensorData,
               br.com.grpc.iot.StatusResposta>(
@@ -295,6 +487,8 @@ public final class MonitorServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new MonitorServiceFileDescriptorSupplier())
+              .addMethod(getRegistrarUsuarioMethod())
+              .addMethod(getRegistrarSensorMethod())
               .addMethod(getEnviarDadosSensorMethod())
               .build();
         }
