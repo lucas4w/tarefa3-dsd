@@ -50,7 +50,7 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object sensorId_ = "";
   /**
    * <pre>
-   * Identificador único do sensor, ex: "cozinha-temp"
+   * Identificador único do sensor
    * </pre>
    *
    * <code>string sensor_id = 1;</code>
@@ -71,7 +71,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Identificador único do sensor, ex: "cozinha-temp"
+   * Identificador único do sensor
    * </pre>
    *
    * <code>string sensor_id = 1;</code>
@@ -588,7 +588,7 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object sensorId_ = "";
     /**
      * <pre>
-     * Identificador único do sensor, ex: "cozinha-temp"
+     * Identificador único do sensor
      * </pre>
      *
      * <code>string sensor_id = 1;</code>
@@ -608,7 +608,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Identificador único do sensor, ex: "cozinha-temp"
+     * Identificador único do sensor
      * </pre>
      *
      * <code>string sensor_id = 1;</code>
@@ -629,7 +629,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Identificador único do sensor, ex: "cozinha-temp"
+     * Identificador único do sensor
      * </pre>
      *
      * <code>string sensor_id = 1;</code>
@@ -646,7 +646,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Identificador único do sensor, ex: "cozinha-temp"
+     * Identificador único do sensor
      * </pre>
      *
      * <code>string sensor_id = 1;</code>
@@ -660,7 +660,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Identificador único do sensor, ex: "cozinha-temp"
+     * Identificador único do sensor
      * </pre>
      *
      * <code>string sensor_id = 1;</code>

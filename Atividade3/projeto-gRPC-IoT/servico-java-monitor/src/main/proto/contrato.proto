@@ -1,24 +1,46 @@
-// Especifica a versão da sintaxe do Protocol Buffers que estamos usando.
 syntax = "proto3";
 
-// Pacote opcional para evitar conflitos de nomes, especialmente útil em Java.
 option java_package = "br.com.grpc.iot";
 option java_multiple_files = true;
 
-// Importamos o tipo Timestamp para lidar com datas e horas de forma padronizada.
 import "google/protobuf/timestamp.proto";
 
-// Definição do nosso serviço de monitoramento.
 service MonitorService {
-  // Novo método para registrar um usuário
+
   rpc RegistrarUsuario(RegistrarUsuarioRequest) returns (RegistrarUsuarioResponse);
 
-  // Novo método para registrar um sensor para um usuário
   rpc RegistrarSensor(RegistrarSensorRequest) returns (RegistrarSensorResponse);
 
-  // O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
-  // Esta é a definição de um "Unary RPC".
   rpc EnviarDadosSensor(SensorData) returns (StatusResposta);
+
+  rpc GetUser(UserData) returns (UserResponse);
+
+  rpc ListarSensores(ListarSensoresRequest) returns (SensoresResponse);
+}
+
+message ListarSensoresRequest {
+  int64 usuario_id = 1;
+}
+
+message SensorInfo {
+  string sensor_id = 1;
+  string nome = 2;
+  string descricao = 3;
+}
+
+message SensoresResponse {
+  string mensagem = 1;             
+  bool sucesso = 2;                
+  repeated SensorInfo sensores = 3; // lista de objetos SensorInfo
+}
+
+message UserData {
+  string email = 1;
+}
+
+message UserResponse {
+  bool sucesso = 1;
+  int64 usuario_id = 2;
 }
 
 // A mensagem para requisitar o registro de um usuário.
@@ -50,7 +72,7 @@ message RegistrarSensorResponse {
 
 // A mensagem que representa uma única leitura do sensor.
 message SensorData {
-  string sensor_id = 1;            // Identificador único do sensor, ex: "cozinha-temp"
+  string sensor_id = 1;            // Identificador único do sensor
   float temperatura = 2;           // Valor da temperatura em Celsius
   float umidade = 3;               // Percentual de umidade
   google.protobuf.Timestamp timestamp = 4; // Data e hora da leitura
@@ -60,5 +82,5 @@ message SensorData {
 message StatusResposta {
   string mensagem = 1;
   int32 total_leituras_recebidas = 2;
-  bool sucesso = 3; // <-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
+  bool sucesso = 3; 
 }

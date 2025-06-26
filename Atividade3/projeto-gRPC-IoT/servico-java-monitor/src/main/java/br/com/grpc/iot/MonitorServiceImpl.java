@@ -15,6 +15,9 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import java.util.List;
+import java.util.Collections; // Para retornar listas vazias de forma segura
+
 // A lógica do nosso serviço. Estendemos a classe base gerada pelo gRPC.
 public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBase {
 
@@ -139,7 +142,7 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
         }
     }
 
-    @Override // <-- Este @Override está na linha 117 no log, indicando o problema de assinatura
+    @Override 
     public void enviarDadosSensor(SensorData request, StreamObserver<StatusResposta> responseObserver) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -190,12 +193,111 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
                 em.getTransaction().rollback();
             }
             responseBuilder.setMensagem("Erro interno ao armazenar dados do sensor.")
-                           .setSucesso(false) // Adicionado 'setSucesso' para a resposta do StatusResposta
+                           .setSucesso(false)
                            .setTotalLeiturasRecebidas(0);
         } finally {
             em.close();
             responseObserver.onNext(responseBuilder.build());
             responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getUser(UserData request, StreamObserver<UserResponse> responseObserver) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin(); // Inicia transação para garantir contexto consistente
+        UserResponse.Builder responseBuilder = UserResponse.newBuilder();
+
+        try {
+            Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)
+                                .setParameter("email", request.getEmail()) // Usa o email da requisição
+                                .getSingleResult(); // Espera um único resultado; lança NoResultException se não encontrar
+
+            // Se chegou até aqui, o usuário foi encontrado
+            em.getTransaction().commit(); // Confirma a transação
+            responseBuilder.setSucesso(true)
+                           .setUsuarioId(usuario.getId());
+            System.out.println("✅ Usuário com email '" + request.getEmail() + "' encontrado. ID: " + usuario.getId());
+
+        } catch (NoResultException e) {
+            // Usuário não encontrado
+            em.getTransaction().rollback();
+            responseBuilder.setSucesso(false);
+            System.out.println("❌ Usuário com email '" + request.getEmail() + "' não encontrado.");
+        } catch (PersistenceException | IllegalStateException e) {
+            // Erros relacionados à persistência ou ao estado da transação (ex: query malformada, problemas de conexão)
+            System.err.println("Erro de persistência ao consultar usuário: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback(); // Garante que a transação seja revertida em caso de erro
+            }
+            responseBuilder.setSucesso(false);
+        } catch (Exception e) {
+            // Capturar outras exceções inesperadas
+            System.err.println("Erro inesperado ao consultar usuário: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false);
+        } finally {
+            em.close(); // Sempre feche o EntityManager
+            responseObserver.onNext(responseBuilder.build()); // Envia a resposta final
+            responseObserver.onCompleted(); // Completa a chamada RPC
+        }
+    }
+
+    @Override
+    public void listarSensores(ListarSensoresRequest request, StreamObserver<SensoresResponse> responseObserver) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin(); // Inicia transação
+        SensoresResponse.Builder responseBuilder = SensoresResponse.newBuilder();
+
+        try {
+            Usuario usuario = em.find(Usuario.class, request.getUsuarioId());
+
+            if (usuario == null) {
+                // Usuário não encontrado
+                em.getTransaction().rollback();
+                responseBuilder.setSucesso(false)
+                               .setMensagem("Usuário com ID " + request.getUsuarioId() + " não encontrado.");
+                System.out.println("❌ Usuário com ID " + request.getUsuarioId() + " não encontrado para listar sensores.");
+            } else {
+                // Carrega os sensores associados a este usuário
+                List<Sensor> sensoresDoUsuario = usuario.getSensores();
+
+                // Adicionar as informações dos sensores à resposta
+                for (Sensor sensor : sensoresDoUsuario) {
+                    SensorInfo sensorInfo = SensorInfo.newBuilder()
+                                                      .setSensorId(sensor.getSensorId())
+                                                      .setNome(sensor.getNome())
+                                                      .setDescricao(sensor.getDescricao() != null ? sensor.getDescricao() : "") // Descrição pode ser nula
+                                                      .build();
+                    responseBuilder.addSensores(sensorInfo); // Adiciona cada SensorInfo à lista
+                }
+
+                em.getTransaction().commit(); // Confirma a transação
+                responseBuilder.setSucesso(true)
+                               .setMensagem("Sensores do usuário " + usuario.getNome() + " listados com sucesso. Total: " + sensoresDoUsuario.size());
+                System.out.println("✅ Sensores listados para o usuário " + usuario.getEmail() + ". Total: " + sensoresDoUsuario.size());
+            }
+
+        } catch (PersistenceException | IllegalStateException e) {
+            System.err.println("Erro de persistência ao listar sensores: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro ao listar sensores: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Erro inesperado ao listar sensores: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro interno ao listar sensores.");
+        } finally {
+            em.close(); // Sempre feche o EntityManager
+            responseObserver.onNext(responseBuilder.build()); // Envia a resposta final
+            responseObserver.onCompleted(); // Completa a chamada RPC
         }
     }
 }

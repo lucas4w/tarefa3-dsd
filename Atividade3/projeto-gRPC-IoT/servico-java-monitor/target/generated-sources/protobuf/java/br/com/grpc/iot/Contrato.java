@@ -16,6 +16,31 @@ public final class Contrato {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ListarSensoresRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ListarSensoresRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SensorInfo_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SensorInfo_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SensoresResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SensoresResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UserData_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UserData_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UserResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UserResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_RegistrarUsuarioRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -55,63 +80,103 @@ public final class Contrato {
   static {
     java.lang.String[] descriptorData = {
       "\n\016contrato.proto\032\037google/protobuf/timest" +
-      "amp.proto\"6\n\027RegistrarUsuarioRequest\022\r\n\005" +
-      "email\030\001 \001(\t\022\014\n\004nome\030\002 \001(\t\"Q\n\030RegistrarUs" +
-      "uarioResponse\022\020\n\010mensagem\030\001 \001(\t\022\022\n\nusuar" +
-      "io_id\030\002 \001(\003\022\017\n\007sucesso\030\003 \001(\010\"M\n\026Registra" +
-      "rSensorRequest\022\022\n\nusuario_id\030\001 \001(\003\022\014\n\004no" +
-      "me\030\002 \001(\t\022\021\n\tdescricao\030\003 \001(\t\"O\n\027Registrar" +
-      "SensorResponse\022\020\n\010mensagem\030\001 \001(\t\022\021\n\tsens" +
-      "or_id\030\002 \001(\t\022\017\n\007sucesso\030\003 \001(\010\"t\n\nSensorDa" +
-      "ta\022\021\n\tsensor_id\030\001 \001(\t\022\023\n\013temperatura\030\002 \001" +
-      "(\002\022\017\n\007umidade\030\003 \001(\002\022-\n\ttimestamp\030\004 \001(\0132\032" +
-      ".google.protobuf.Timestamp\"U\n\016StatusResp" +
-      "osta\022\020\n\010mensagem\030\001 \001(\t\022 \n\030total_leituras" +
-      "_recebidas\030\002 \001(\005\022\017\n\007sucesso\030\003 \001(\0102\322\001\n\016Mo" +
-      "nitorService\022G\n\020RegistrarUsuario\022\030.Regis" +
-      "trarUsuarioRequest\032\031.RegistrarUsuarioRes" +
-      "ponse\022D\n\017RegistrarSensor\022\027.RegistrarSens" +
-      "orRequest\032\030.RegistrarSensorResponse\0221\n\021E" +
-      "nviarDadosSensor\022\013.SensorData\032\017.StatusRe" +
-      "spostaB\023\n\017br.com.grpc.iotP\001b\006proto3"
+      "amp.proto\"+\n\025ListarSensoresRequest\022\022\n\nus" +
+      "uario_id\030\001 \001(\003\"@\n\nSensorInfo\022\021\n\tsensor_i" +
+      "d\030\001 \001(\t\022\014\n\004nome\030\002 \001(\t\022\021\n\tdescricao\030\003 \001(\t" +
+      "\"T\n\020SensoresResponse\022\020\n\010mensagem\030\001 \001(\t\022\017" +
+      "\n\007sucesso\030\002 \001(\010\022\035\n\010sensores\030\003 \003(\0132\013.Sens" +
+      "orInfo\"\031\n\010UserData\022\r\n\005email\030\001 \001(\t\"3\n\014Use" +
+      "rResponse\022\017\n\007sucesso\030\001 \001(\010\022\022\n\nusuario_id" +
+      "\030\002 \001(\003\"6\n\027RegistrarUsuarioRequest\022\r\n\005ema" +
+      "il\030\001 \001(\t\022\014\n\004nome\030\002 \001(\t\"Q\n\030RegistrarUsuar" +
+      "ioResponse\022\020\n\010mensagem\030\001 \001(\t\022\022\n\nusuario_" +
+      "id\030\002 \001(\003\022\017\n\007sucesso\030\003 \001(\010\"M\n\026RegistrarSe" +
+      "nsorRequest\022\022\n\nusuario_id\030\001 \001(\003\022\014\n\004nome\030" +
+      "\002 \001(\t\022\021\n\tdescricao\030\003 \001(\t\"O\n\027RegistrarSen" +
+      "sorResponse\022\020\n\010mensagem\030\001 \001(\t\022\021\n\tsensor_" +
+      "id\030\002 \001(\t\022\017\n\007sucesso\030\003 \001(\010\"t\n\nSensorData\022" +
+      "\021\n\tsensor_id\030\001 \001(\t\022\023\n\013temperatura\030\002 \001(\002\022" +
+      "\017\n\007umidade\030\003 \001(\002\022-\n\ttimestamp\030\004 \001(\0132\032.go" +
+      "ogle.protobuf.Timestamp\"U\n\016StatusRespost" +
+      "a\022\020\n\010mensagem\030\001 \001(\t\022 \n\030total_leituras_re" +
+      "cebidas\030\002 \001(\005\022\017\n\007sucesso\030\003 \001(\0102\264\002\n\016Monit" +
+      "orService\022G\n\020RegistrarUsuario\022\030.Registra" +
+      "rUsuarioRequest\032\031.RegistrarUsuarioRespon" +
+      "se\022D\n\017RegistrarSensor\022\027.RegistrarSensorR" +
+      "equest\032\030.RegistrarSensorResponse\0221\n\021Envi" +
+      "arDadosSensor\022\013.SensorData\032\017.StatusRespo" +
+      "sta\022#\n\007GetUser\022\t.UserData\032\r.UserResponse" +
+      "\022;\n\016ListarSensores\022\026.ListarSensoresReque" +
+      "st\032\021.SensoresResponseB\023\n\017br.com.grpc.iot" +
+      "P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
-    internal_static_RegistrarUsuarioRequest_descriptor =
+    internal_static_ListarSensoresRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_ListarSensoresRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ListarSensoresRequest_descriptor,
+        new java.lang.String[] { "UsuarioId", });
+    internal_static_SensorInfo_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_SensorInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SensorInfo_descriptor,
+        new java.lang.String[] { "SensorId", "Nome", "Descricao", });
+    internal_static_SensoresResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_SensoresResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SensoresResponse_descriptor,
+        new java.lang.String[] { "Mensagem", "Sucesso", "Sensores", });
+    internal_static_UserData_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_UserData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UserData_descriptor,
+        new java.lang.String[] { "Email", });
+    internal_static_UserResponse_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_UserResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UserResponse_descriptor,
+        new java.lang.String[] { "Sucesso", "UsuarioId", });
+    internal_static_RegistrarUsuarioRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_RegistrarUsuarioRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegistrarUsuarioRequest_descriptor,
         new java.lang.String[] { "Email", "Nome", });
     internal_static_RegistrarUsuarioResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_RegistrarUsuarioResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegistrarUsuarioResponse_descriptor,
         new java.lang.String[] { "Mensagem", "UsuarioId", "Sucesso", });
     internal_static_RegistrarSensorRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_RegistrarSensorRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegistrarSensorRequest_descriptor,
         new java.lang.String[] { "UsuarioId", "Nome", "Descricao", });
     internal_static_RegistrarSensorResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_RegistrarSensorResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegistrarSensorResponse_descriptor,
         new java.lang.String[] { "Mensagem", "SensorId", "Sucesso", });
     internal_static_SensorData_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_SensorData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SensorData_descriptor,
         new java.lang.String[] { "SensorId", "Temperatura", "Umidade", "Timestamp", });
     internal_static_StatusResposta_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_StatusResposta_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_StatusResposta_descriptor,

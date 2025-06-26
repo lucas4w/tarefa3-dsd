@@ -97,10 +97,6 @@ private static final long serialVersionUID = 0L;
   public static final int SUCESSO_FIELD_NUMBER = 3;
   private boolean sucesso_ = false;
   /**
-   * <pre>
-   * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
-   * </pre>
-   *
    * <code>bool sucesso = 3;</code>
    * @return The sucesso.
    */
@@ -592,10 +588,6 @@ private static final long serialVersionUID = 0L;
 
     private boolean sucesso_ ;
     /**
-     * <pre>
-     * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
-     * </pre>
-     *
      * <code>bool sucesso = 3;</code>
      * @return The sucesso.
      */
@@ -604,10 +596,6 @@ private static final long serialVersionUID = 0L;
       return sucesso_;
     }
     /**
-     * <pre>
-     * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
-     * </pre>
-     *
      * <code>bool sucesso = 3;</code>
      * @param value The sucesso to set.
      * @return This builder for chaining.
@@ -620,10 +608,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * &lt;-- NOVO CAMPO: Indica se a operação de envio de dados foi bem-sucedida
-     * </pre>
-     *
      * <code>bool sucesso = 3;</code>
      * @return This builder for chaining.
      */

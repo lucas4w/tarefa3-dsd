@@ -14,18 +14,16 @@ SERVER_ADDRESS = 'localhost:50051'
 def display_menu():
     """Exibe o menu de opções para o usuário."""
     print("\n--- Menu do Cliente gRPC IoT ---")
-    print("1. Registrar Novo Usuário")
-    print("2. Registrar Novo Sensor para um Usuário")
-    print("3. Enviar Dados de Leitura para um Sensor")
-    print("4. Sair")
+    print("1. Registrar Novo Sensor")
+    print("2. Enviar Dados de Leitura para um Sensor")
+    print("3. Sair")
     print("-------------------------------")
 
-def register_user(stub):
+def register_user(stub,email):
     """
     Função para registrar um novo usuário via RPC RegistrarUsuario.
     """
     print("\n--- Registrar Novo Usuário ---")
-    email = input("Digite o email do usuário: ")
     nome = input("Digite o nome do usuário: ")
 
     request = contrato_pb2.RegistrarUsuarioRequest(email=email, nome=nome)
@@ -41,17 +39,13 @@ def register_user(stub):
         print("---------------------------------------------")
     except grpc.RpcError as e:
         print(f"Erro ao registrar usuário: {e.details}")
+    return response.usuario_id
 
-def register_sensor(stub):
+def register_sensor(stub,usuario_id):
     """
     Função para registrar um novo sensor via RPC RegistrarSensor.
     """
     print("\n--- Registrar Novo Sensor ---")
-    try:
-        usuario_id = int(input("Digite o ID do usuário (numérico) para associar o sensor: "))
-    except ValueError:
-        print("ID de usuário inválido. Por favor, insira um número.")
-        return
 
     nome = input("Digite um nome amigável para o sensor (ex: 'Sensor de Cozinha'): ")
     descricao = input("Digite uma breve descrição para o sensor (opcional): ")
@@ -94,24 +88,55 @@ def generate_single_sensor_data(sensor_id_param):
         timestamp=ts
     )
 
-def send_sensor_data(stub):
+def send_sensor_data(stub,sensor_id):
     """
     Função para enviar dados de leitura para um sensor via RPC EnviarDadosSensor (unário).
     """
     print("\n--- Enviar Dados de Leitura para um Sensor ---")
-    sensor_id = input("Digite o ID do sensor para o qual deseja enviar dados: ")
-
     sensor_data_message = generate_single_sensor_data(sensor_id)
 
     try:
         response = stub.EnviarDadosSensor(sensor_data_message) # Chamada unária
         print("\n--- RESPOSTA DO SERVIDOR (Enviar Dados) ---")
         print(f"Mensagem: {response.mensagem}")
-        print(f"Sucesso: {response.sucesso}")
-        print(f"Total de leituras processadas: {response.total_leituras_recebidas}")
         print("------------------------------------------")
     except grpc.RpcError as e:
         print(f"Erro ao enviar dados do sensor: {e.details}")
+
+def get_userId(stub,email):
+    request = contrato_pb2.UserData(email=email)
+    
+    try:
+        response = stub.GetUser(request)
+    except grpc.RpcError as e:
+        print(f"Erro ao buscar usuário: {e.details}")
+    if response.sucesso:
+        return response.usuario_id
+    else:
+        return -1
+    
+def print_sensores(stub,user_id):
+    sensores = get_sensores(stub,user_id)
+    while True:
+        for i,sensor in enumerate(sensores, start=1):
+            print(f"{i}. {sensor.nome}")
+        choice = int(input("Informe o número do sensor: "))
+        if choice < 1 or choice > len(sensores):
+            print("Número inválido")
+        else:
+            sensor = sensores[choice-1]
+            sensor_id = sensor.sensor_id
+            send_sensor_data(stub,sensor_id)
+            break
+
+def get_sensores(stub,user_id):
+    request = contrato_pb2.ListarSensoresRequest(usuario_id=user_id)
+
+    try:
+        response = stub.ListarSensores(request)
+    except grpc.RpcError as e:
+        print(f"Erro ao buscar sensores do usuário: {e.details}")
+    return response.sensores
 
 def run():
     """
@@ -121,23 +146,26 @@ def run():
         stub = contrato_pb2_grpc.MonitorServiceStub(channel)
         print(f"Conectado ao servidor gRPC em {SERVER_ADDRESS}.")
 
+        email = input("Informe o email: ")
+        user_id = get_userId(stub,email)
+        if user_id == -1:
+            user_id = register_user(stub,email)
+        print("Usuário encontrado com sucesso!")
         while True:
             display_menu()
             choice = input("Escolha uma opção: ")
 
             if choice == '1':
-                register_user(stub)
+                register_sensor(stub,user_id)
             elif choice == '2':
-                register_sensor(stub)
+                print_sensores(stub,user_id)
             elif choice == '3':
-                send_sensor_data(stub)
-            elif choice == '4':
                 print("Saindo...")
                 break
             else:
                 print("Opção inválida. Tente novamente.")
             
-            time.sleep(1) # Pequena pausa para melhor leitura do terminal
+            time.sleep(1)
 
 if __name__ == '__main__':
     run()

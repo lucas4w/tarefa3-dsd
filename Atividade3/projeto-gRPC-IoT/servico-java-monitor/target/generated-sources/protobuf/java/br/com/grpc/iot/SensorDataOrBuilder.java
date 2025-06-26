@@ -10,7 +10,7 @@ public interface SensorDataOrBuilder extends
 
   /**
    * <pre>
-   * Identificador único do sensor, ex: "cozinha-temp"
+   * Identificador único do sensor
    * </pre>
    *
    * <code>string sensor_id = 1;</code>
@@ -19,7 +19,7 @@ public interface SensorDataOrBuilder extends
   java.lang.String getSensorId();
   /**
    * <pre>
-   * Identificador único do sensor, ex: "cozinha-temp"
+   * Identificador único do sensor
    * </pre>
    *
    * <code>string sensor_id = 1;</code>

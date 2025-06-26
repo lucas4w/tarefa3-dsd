@@ -5,7 +5,7 @@ import warnings
 
 import contrato_pb2 as contrato__pb2
 
-GRPC_GENERATED_VERSION = '1.73.0'
+GRPC_GENERATED_VERSION = '1.73.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -26,8 +26,7 @@ if _version_not_supported:
 
 
 class MonitorServiceStub(object):
-    """Definição do nosso serviço de monitoramento.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -50,30 +49,47 @@ class MonitorServiceStub(object):
                 request_serializer=contrato__pb2.SensorData.SerializeToString,
                 response_deserializer=contrato__pb2.StatusResposta.FromString,
                 _registered_method=True)
+        self.GetUser = channel.unary_unary(
+                '/MonitorService/GetUser',
+                request_serializer=contrato__pb2.UserData.SerializeToString,
+                response_deserializer=contrato__pb2.UserResponse.FromString,
+                _registered_method=True)
+        self.ListarSensores = channel.unary_unary(
+                '/MonitorService/ListarSensores',
+                request_serializer=contrato__pb2.ListarSensoresRequest.SerializeToString,
+                response_deserializer=contrato__pb2.SensoresResponse.FromString,
+                _registered_method=True)
 
 
 class MonitorServiceServicer(object):
-    """Definição do nosso serviço de monitoramento.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def RegistrarUsuario(self, request, context):
-        """Novo método para registrar um usuário
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def RegistrarSensor(self, request, context):
-        """Novo método para registrar um sensor para um usuário
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def EnviarDadosSensor(self, request, context):
-        """O cliente envia uma ÚNICA mensagem de dados do sensor e o servidor retorna um StatusResposta.
-        Esta é a definição de um "Unary RPC".
-        """
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListarSensores(self, request, context):
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -96,6 +112,16 @@ def add_MonitorServiceServicer_to_server(servicer, server):
                     request_deserializer=contrato__pb2.SensorData.FromString,
                     response_serializer=contrato__pb2.StatusResposta.SerializeToString,
             ),
+            'GetUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUser,
+                    request_deserializer=contrato__pb2.UserData.FromString,
+                    response_serializer=contrato__pb2.UserResponse.SerializeToString,
+            ),
+            'ListarSensores': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListarSensores,
+                    request_deserializer=contrato__pb2.ListarSensoresRequest.FromString,
+                    response_serializer=contrato__pb2.SensoresResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'MonitorService', rpc_method_handlers)
@@ -105,8 +131,7 @@ def add_MonitorServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class MonitorService(object):
-    """Definição do nosso serviço de monitoramento.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def RegistrarUsuario(request,
@@ -179,6 +204,60 @@ class MonitorService(object):
             '/MonitorService/EnviarDadosSensor',
             contrato__pb2.SensorData.SerializeToString,
             contrato__pb2.StatusResposta.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MonitorService/GetUser',
+            contrato__pb2.UserData.SerializeToString,
+            contrato__pb2.UserResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ListarSensores(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MonitorService/ListarSensores',
+            contrato__pb2.ListarSensoresRequest.SerializeToString,
+            contrato__pb2.SensoresResponse.FromString,
             options,
             channel_credentials,
             insecure,
