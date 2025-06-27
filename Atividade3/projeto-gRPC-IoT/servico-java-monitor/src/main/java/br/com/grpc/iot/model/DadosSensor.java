@@ -26,10 +26,9 @@ public class DadosSensor implements Serializable {
     // @JoinColumn especifica a coluna na tabela 'dados_sensor' que será a chave estrangeira
     // para a tabela 'sensores'.
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sensor_id", nullable = false) // Garante que um dado sempre pertença a um sensor
+    @JoinColumn(name = "sensor_id", nullable = false) // garante que um dado sempre pertença a um sensor
     private Sensor sensor;
 
-    // Construtor padrão (obrigatório para JPA)
     public DadosSensor() {}
 
     public DadosSensor(float temperatura, float umidade, Instant timestamp, Sensor sensor) {
@@ -39,7 +38,6 @@ public class DadosSensor implements Serializable {
         this.sensor = sensor;
     }
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

@@ -31,7 +31,7 @@ public class MonitorServer {
         
         int port = 50051;
 
-        // 1. Inicializa o EntityManagerFactory uma única vez
+        // Inicializa o EntityManagerFactory uma única vez
         try {
             emf = Persistence.createEntityManagerFactory("iot_monitor_pu");
             System.out.println("✅ EntityManagerFactory inicializado com sucesso.");
@@ -55,19 +55,15 @@ public class MonitorServer {
         System.out.println("✅ Servidor gRPC iniciado na porta " + port);
         System.out.println("Aguardando conexões de clientes gRPC (usuários, sensores)...");
 
-        // Adiciona um gancho de desligamento (shutdown hook) para fechar a conexão do BD
-        // e o EntityManagerFactory quando o JVM for desligado (ex: Ctrl+C)
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("🚫 Desligando servidor gRPC...");
             try {
-                // Tenta desligar o servidor gRPC de forma graciosa
                 server.shutdown().awaitTermination(30, TimeUnit.SECONDS);
                 System.out.println("✅ Servidor gRPC desligado.");
             } catch (InterruptedException e) {
                 System.err.println("Erro ao desligar o servidor: " + e.getMessage());
                 Thread.currentThread().interrupt();
             } finally {
-                // Certifica-se de fechar o EntityManagerFactory
                 if (emf != null && emf.isOpen()) {
                     emf.close();
                     System.out.println("✅ EntityManagerFactory fechado.");

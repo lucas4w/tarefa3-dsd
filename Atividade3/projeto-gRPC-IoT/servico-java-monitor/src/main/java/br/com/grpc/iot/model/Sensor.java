@@ -3,7 +3,7 @@ package br.com.grpc.iot.model;
 import javax.persistence.*; 
 import java.util.List;
 import java.io.Serializable;
-import java.util.UUID; // Para gerar IDs únicos de sensor
+import java.util.UUID; 
 
 @Entity 
 @Table(name = "sensores")
@@ -14,7 +14,7 @@ public class Sensor implements Serializable {
     private String sensorId;
 
     @Column(nullable = false)
-    private String nome; // Nome amigável do sensor, ex: "Sensor de Temperatura da Cozinha"
+    private String nome; 
 
     @Column(nullable = true) // Pode ser nulo se não houver descrição
     private String descricao;

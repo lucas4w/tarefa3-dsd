@@ -170,6 +170,37 @@ public final class MonitorServiceGrpc {
     return getListarSensoresMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<br.com.grpc.iot.DadosRequest,
+      br.com.grpc.iot.DadosResponse> getGetDadosMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetDados",
+      requestType = br.com.grpc.iot.DadosRequest.class,
+      responseType = br.com.grpc.iot.DadosResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<br.com.grpc.iot.DadosRequest,
+      br.com.grpc.iot.DadosResponse> getGetDadosMethod() {
+    io.grpc.MethodDescriptor<br.com.grpc.iot.DadosRequest, br.com.grpc.iot.DadosResponse> getGetDadosMethod;
+    if ((getGetDadosMethod = MonitorServiceGrpc.getGetDadosMethod) == null) {
+      synchronized (MonitorServiceGrpc.class) {
+        if ((getGetDadosMethod = MonitorServiceGrpc.getGetDadosMethod) == null) {
+          MonitorServiceGrpc.getGetDadosMethod = getGetDadosMethod =
+              io.grpc.MethodDescriptor.<br.com.grpc.iot.DadosRequest, br.com.grpc.iot.DadosResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetDados"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.DadosRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.DadosResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MonitorServiceMethodDescriptorSupplier("GetDados"))
+              .build();
+        }
+      }
+    }
+    return getGetDadosMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -252,6 +283,13 @@ public final class MonitorServiceGrpc {
         io.grpc.stub.StreamObserver<br.com.grpc.iot.SensoresResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListarSensoresMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void getDados(br.com.grpc.iot.DadosRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.DadosResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetDadosMethod(), responseObserver);
+    }
   }
 
   /**
@@ -320,6 +358,14 @@ public final class MonitorServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getListarSensoresMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getDados(br.com.grpc.iot.DadosRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.DadosResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetDadosMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -371,6 +417,13 @@ public final class MonitorServiceGrpc {
     public br.com.grpc.iot.SensoresResponse listarSensores(br.com.grpc.iot.ListarSensoresRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getListarSensoresMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public br.com.grpc.iot.DadosResponse getDados(br.com.grpc.iot.DadosRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetDadosMethod(), getCallOptions(), request);
     }
   }
 
@@ -429,6 +482,14 @@ public final class MonitorServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getListarSensoresMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.grpc.iot.DadosResponse> getDados(
+        br.com.grpc.iot.DadosRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetDadosMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTRAR_USUARIO = 0;
@@ -436,6 +497,7 @@ public final class MonitorServiceGrpc {
   private static final int METHODID_ENVIAR_DADOS_SENSOR = 2;
   private static final int METHODID_GET_USER = 3;
   private static final int METHODID_LISTAR_SENSORES = 4;
+  private static final int METHODID_GET_DADOS = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -473,6 +535,10 @@ public final class MonitorServiceGrpc {
         case METHODID_LISTAR_SENSORES:
           serviceImpl.listarSensores((br.com.grpc.iot.ListarSensoresRequest) request,
               (io.grpc.stub.StreamObserver<br.com.grpc.iot.SensoresResponse>) responseObserver);
+          break;
+        case METHODID_GET_DADOS:
+          serviceImpl.getDados((br.com.grpc.iot.DadosRequest) request,
+              (io.grpc.stub.StreamObserver<br.com.grpc.iot.DadosResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -527,6 +593,13 @@ public final class MonitorServiceGrpc {
               br.com.grpc.iot.ListarSensoresRequest,
               br.com.grpc.iot.SensoresResponse>(
                 service, METHODID_LISTAR_SENSORES)))
+        .addMethod(
+          getGetDadosMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              br.com.grpc.iot.DadosRequest,
+              br.com.grpc.iot.DadosResponse>(
+                service, METHODID_GET_DADOS)))
         .build();
   }
 
@@ -580,6 +653,7 @@ public final class MonitorServiceGrpc {
               .addMethod(getEnviarDadosSensorMethod())
               .addMethod(getGetUserMethod())
               .addMethod(getListarSensoresMethod())
+              .addMethod(getGetDadosMethod())
               .build();
         }
       }

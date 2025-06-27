@@ -59,6 +59,11 @@ class MonitorServiceStub(object):
                 request_serializer=contrato__pb2.ListarSensoresRequest.SerializeToString,
                 response_deserializer=contrato__pb2.SensoresResponse.FromString,
                 _registered_method=True)
+        self.GetDados = channel.unary_unary(
+                '/MonitorService/GetDados',
+                request_serializer=contrato__pb2.DadosRequest.SerializeToString,
+                response_deserializer=contrato__pb2.DadosResponse.FromString,
+                _registered_method=True)
 
 
 class MonitorServiceServicer(object):
@@ -94,6 +99,12 @@ class MonitorServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetDados(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MonitorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -121,6 +132,11 @@ def add_MonitorServiceServicer_to_server(servicer, server):
                     servicer.ListarSensores,
                     request_deserializer=contrato__pb2.ListarSensoresRequest.FromString,
                     response_serializer=contrato__pb2.SensoresResponse.SerializeToString,
+            ),
+            'GetDados': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetDados,
+                    request_deserializer=contrato__pb2.DadosRequest.FromString,
+                    response_serializer=contrato__pb2.DadosResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -258,6 +274,33 @@ class MonitorService(object):
             '/MonitorService/ListarSensores',
             contrato__pb2.ListarSensoresRequest.SerializeToString,
             contrato__pb2.SensoresResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetDados(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MonitorService/GetDados',
+            contrato__pb2.DadosRequest.SerializeToString,
+            contrato__pb2.DadosResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -5,129 +5,48 @@
 package br.com.grpc.iot;
 
 /**
- * <pre>
- * A mensagem que representa uma única leitura do sensor.
- * </pre>
- *
- * Protobuf type {@code SensorData}
+ * Protobuf type {@code DadosResponse}
  */
-public final class SensorData extends
+public final class DadosResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:SensorData)
-    SensorDataOrBuilder {
+    // @@protoc_insertion_point(message_implements:DadosResponse)
+    DadosResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use SensorData.newBuilder() to construct.
-  private SensorData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use DadosResponse.newBuilder() to construct.
+  private DadosResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private SensorData() {
-    sensorId_ = "";
+  private DadosResponse() {
     mensagem_ = "";
+    sensorIdEncontrado_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new SensorData();
+    return new DadosResponse();
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return br.com.grpc.iot.Contrato.internal_static_SensorData_descriptor;
+    return br.com.grpc.iot.Contrato.internal_static_DadosResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return br.com.grpc.iot.Contrato.internal_static_SensorData_fieldAccessorTable
+    return br.com.grpc.iot.Contrato.internal_static_DadosResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            br.com.grpc.iot.SensorData.class, br.com.grpc.iot.SensorData.Builder.class);
+            br.com.grpc.iot.DadosResponse.class, br.com.grpc.iot.DadosResponse.Builder.class);
   }
 
   private int bitField0_;
-  public static final int SENSOR_ID_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object sensorId_ = "";
-  /**
-   * <pre>
-   * Identificador único do sensor
-   * </pre>
-   *
-   * <code>string sensor_id = 1;</code>
-   * @return The sensorId.
-   */
-  @java.lang.Override
-  public java.lang.String getSensorId() {
-    java.lang.Object ref = sensorId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      sensorId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <pre>
-   * Identificador único do sensor
-   * </pre>
-   *
-   * <code>string sensor_id = 1;</code>
-   * @return The bytes for sensorId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getSensorIdBytes() {
-    java.lang.Object ref = sensorId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      sensorId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int TEMPERATURA_FIELD_NUMBER = 2;
-  private float temperatura_ = 0F;
-  /**
-   * <pre>
-   * Valor da temperatura em Celsius
-   * </pre>
-   *
-   * <code>float temperatura = 2;</code>
-   * @return The temperatura.
-   */
-  @java.lang.Override
-  public float getTemperatura() {
-    return temperatura_;
-  }
-
-  public static final int UMIDADE_FIELD_NUMBER = 3;
-  private float umidade_ = 0F;
-  /**
-   * <pre>
-   * Percentual de umidade
-   * </pre>
-   *
-   * <code>float umidade = 3;</code>
-   * @return The umidade.
-   */
-  @java.lang.Override
-  public float getUmidade() {
-    return umidade_;
-  }
-
-  public static final int MENSAGEM_FIELD_NUMBER = 4;
+  public static final int MENSAGEM_FIELD_NUMBER = 1;
   @SuppressWarnings("serial")
   private volatile java.lang.Object mensagem_ = "";
   /**
-   * <code>string mensagem = 4;</code>
+   * <code>string mensagem = 1;</code>
    * @return The mensagem.
    */
   @java.lang.Override
@@ -144,7 +63,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string mensagem = 4;</code>
+   * <code>string mensagem = 1;</code>
    * @return The bytes for mensagem.
    */
   @java.lang.Override
@@ -162,10 +81,10 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int SUCESSO_FIELD_NUMBER = 5;
+  public static final int SUCESSO_FIELD_NUMBER = 2;
   private boolean sucesso_ = false;
   /**
-   * <code>bool sucesso = 5;</code>
+   * <code>bool sucesso = 2;</code>
    * @return The sucesso.
    */
   @java.lang.Override
@@ -173,42 +92,91 @@ private static final long serialVersionUID = 0L;
     return sucesso_;
   }
 
-  public static final int TIMESTAMP_FIELD_NUMBER = 6;
-  private com.google.protobuf.Timestamp timestamp_;
+  public static final int SENSOR_ID_ENCONTRADO_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object sensorIdEncontrado_ = "";
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp timestamp = 6;</code>
-   * @return Whether the timestamp field is set.
+   * <code>string sensor_id_encontrado = 3;</code>
+   * @return The sensorIdEncontrado.
    */
   @java.lang.Override
-  public boolean hasTimestamp() {
+  public java.lang.String getSensorIdEncontrado() {
+    java.lang.Object ref = sensorIdEncontrado_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      sensorIdEncontrado_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string sensor_id_encontrado = 3;</code>
+   * @return The bytes for sensorIdEncontrado.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getSensorIdEncontradoBytes() {
+    java.lang.Object ref = sensorIdEncontrado_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      sensorIdEncontrado_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int TEMPERATURA_ENCONTRADA_FIELD_NUMBER = 4;
+  private float temperaturaEncontrada_ = 0F;
+  /**
+   * <code>float temperatura_encontrada = 4;</code>
+   * @return The temperaturaEncontrada.
+   */
+  @java.lang.Override
+  public float getTemperaturaEncontrada() {
+    return temperaturaEncontrada_;
+  }
+
+  public static final int UMIDADE_ENCONTRADA_FIELD_NUMBER = 5;
+  private float umidadeEncontrada_ = 0F;
+  /**
+   * <code>float umidade_encontrada = 5;</code>
+   * @return The umidadeEncontrada.
+   */
+  @java.lang.Override
+  public float getUmidadeEncontrada() {
+    return umidadeEncontrada_;
+  }
+
+  public static final int TIMESTAMP_ENCONTRADO_FIELD_NUMBER = 6;
+  private com.google.protobuf.Timestamp timestampEncontrado_;
+  /**
+   * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
+   * @return Whether the timestampEncontrado field is set.
+   */
+  @java.lang.Override
+  public boolean hasTimestampEncontrado() {
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp timestamp = 6;</code>
-   * @return The timestamp.
+   * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
+   * @return The timestampEncontrado.
    */
   @java.lang.Override
-  public com.google.protobuf.Timestamp getTimestamp() {
-    return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+  public com.google.protobuf.Timestamp getTimestampEncontrado() {
+    return timestampEncontrado_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestampEncontrado_;
   }
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
-   * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+   * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-    return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+  public com.google.protobuf.TimestampOrBuilder getTimestampEncontradoOrBuilder() {
+    return timestampEncontrado_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestampEncontrado_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -225,23 +193,23 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sensorId_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sensorId_);
-    }
-    if (java.lang.Float.floatToRawIntBits(temperatura_) != 0) {
-      output.writeFloat(2, temperatura_);
-    }
-    if (java.lang.Float.floatToRawIntBits(umidade_) != 0) {
-      output.writeFloat(3, umidade_);
-    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mensagem_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, mensagem_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mensagem_);
     }
     if (sucesso_ != false) {
-      output.writeBool(5, sucesso_);
+      output.writeBool(2, sucesso_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sensorIdEncontrado_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sensorIdEncontrado_);
+    }
+    if (java.lang.Float.floatToRawIntBits(temperaturaEncontrada_) != 0) {
+      output.writeFloat(4, temperaturaEncontrada_);
+    }
+    if (java.lang.Float.floatToRawIntBits(umidadeEncontrada_) != 0) {
+      output.writeFloat(5, umidadeEncontrada_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(6, getTimestamp());
+      output.writeMessage(6, getTimestampEncontrado());
     }
     getUnknownFields().writeTo(output);
   }
@@ -252,27 +220,27 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sensorId_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sensorId_);
-    }
-    if (java.lang.Float.floatToRawIntBits(temperatura_) != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(2, temperatura_);
-    }
-    if (java.lang.Float.floatToRawIntBits(umidade_) != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(3, umidade_);
-    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mensagem_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, mensagem_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mensagem_);
     }
     if (sucesso_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(5, sucesso_);
+        .computeBoolSize(2, sucesso_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sensorIdEncontrado_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sensorIdEncontrado_);
+    }
+    if (java.lang.Float.floatToRawIntBits(temperaturaEncontrada_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(4, temperaturaEncontrada_);
+    }
+    if (java.lang.Float.floatToRawIntBits(umidadeEncontrada_) != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(5, umidadeEncontrada_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, getTimestamp());
+        .computeMessageSize(6, getTimestampEncontrado());
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -284,27 +252,27 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof br.com.grpc.iot.SensorData)) {
+    if (!(obj instanceof br.com.grpc.iot.DadosResponse)) {
       return super.equals(obj);
     }
-    br.com.grpc.iot.SensorData other = (br.com.grpc.iot.SensorData) obj;
+    br.com.grpc.iot.DadosResponse other = (br.com.grpc.iot.DadosResponse) obj;
 
-    if (!getSensorId()
-        .equals(other.getSensorId())) return false;
-    if (java.lang.Float.floatToIntBits(getTemperatura())
-        != java.lang.Float.floatToIntBits(
-            other.getTemperatura())) return false;
-    if (java.lang.Float.floatToIntBits(getUmidade())
-        != java.lang.Float.floatToIntBits(
-            other.getUmidade())) return false;
     if (!getMensagem()
         .equals(other.getMensagem())) return false;
     if (getSucesso()
         != other.getSucesso()) return false;
-    if (hasTimestamp() != other.hasTimestamp()) return false;
-    if (hasTimestamp()) {
-      if (!getTimestamp()
-          .equals(other.getTimestamp())) return false;
+    if (!getSensorIdEncontrado()
+        .equals(other.getSensorIdEncontrado())) return false;
+    if (java.lang.Float.floatToIntBits(getTemperaturaEncontrada())
+        != java.lang.Float.floatToIntBits(
+            other.getTemperaturaEncontrada())) return false;
+    if (java.lang.Float.floatToIntBits(getUmidadeEncontrada())
+        != java.lang.Float.floatToIntBits(
+            other.getUmidadeEncontrada())) return false;
+    if (hasTimestampEncontrado() != other.hasTimestampEncontrado()) return false;
+    if (hasTimestampEncontrado()) {
+      if (!getTimestampEncontrado()
+          .equals(other.getTimestampEncontrado())) return false;
     }
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
@@ -317,66 +285,66 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + SENSOR_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getSensorId().hashCode();
-    hash = (37 * hash) + TEMPERATURA_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getTemperatura());
-    hash = (37 * hash) + UMIDADE_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getUmidade());
     hash = (37 * hash) + MENSAGEM_FIELD_NUMBER;
     hash = (53 * hash) + getMensagem().hashCode();
     hash = (37 * hash) + SUCESSO_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getSucesso());
-    if (hasTimestamp()) {
-      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-      hash = (53 * hash) + getTimestamp().hashCode();
+    hash = (37 * hash) + SENSOR_ID_ENCONTRADO_FIELD_NUMBER;
+    hash = (53 * hash) + getSensorIdEncontrado().hashCode();
+    hash = (37 * hash) + TEMPERATURA_ENCONTRADA_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getTemperaturaEncontrada());
+    hash = (37 * hash) + UMIDADE_ENCONTRADA_FIELD_NUMBER;
+    hash = (53 * hash) + java.lang.Float.floatToIntBits(
+        getUmidadeEncontrada());
+    if (hasTimestampEncontrado()) {
+      hash = (37 * hash) + TIMESTAMP_ENCONTRADO_FIELD_NUMBER;
+      hash = (53 * hash) + getTimestampEncontrado().hashCode();
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(byte[] data)
+  public static br.com.grpc.iot.DadosResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(java.io.InputStream input)
+  public static br.com.grpc.iot.DadosResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -384,26 +352,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static br.com.grpc.iot.SensorData parseDelimitedFrom(java.io.InputStream input)
+  public static br.com.grpc.iot.DadosResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static br.com.grpc.iot.SensorData parseDelimitedFrom(
+  public static br.com.grpc.iot.DadosResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static br.com.grpc.iot.SensorData parseFrom(
+  public static br.com.grpc.iot.DadosResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -416,7 +384,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(br.com.grpc.iot.SensorData prototype) {
+  public static Builder newBuilder(br.com.grpc.iot.DadosResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -432,30 +400,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * A mensagem que representa uma única leitura do sensor.
-   * </pre>
-   *
-   * Protobuf type {@code SensorData}
+   * Protobuf type {@code DadosResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:SensorData)
-      br.com.grpc.iot.SensorDataOrBuilder {
+      // @@protoc_insertion_point(builder_implements:DadosResponse)
+      br.com.grpc.iot.DadosResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return br.com.grpc.iot.Contrato.internal_static_SensorData_descriptor;
+      return br.com.grpc.iot.Contrato.internal_static_DadosResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return br.com.grpc.iot.Contrato.internal_static_SensorData_fieldAccessorTable
+      return br.com.grpc.iot.Contrato.internal_static_DadosResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              br.com.grpc.iot.SensorData.class, br.com.grpc.iot.SensorData.Builder.class);
+              br.com.grpc.iot.DadosResponse.class, br.com.grpc.iot.DadosResponse.Builder.class);
     }
 
-    // Construct using br.com.grpc.iot.SensorData.newBuilder()
+    // Construct using br.com.grpc.iot.DadosResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -468,22 +432,22 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getTimestampFieldBuilder();
+        getTimestampEncontradoFieldBuilder();
       }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      sensorId_ = "";
-      temperatura_ = 0F;
-      umidade_ = 0F;
       mensagem_ = "";
       sucesso_ = false;
-      timestamp_ = null;
-      if (timestampBuilder_ != null) {
-        timestampBuilder_.dispose();
-        timestampBuilder_ = null;
+      sensorIdEncontrado_ = "";
+      temperaturaEncontrada_ = 0F;
+      umidadeEncontrada_ = 0F;
+      timestampEncontrado_ = null;
+      if (timestampEncontradoBuilder_ != null) {
+        timestampEncontradoBuilder_.dispose();
+        timestampEncontradoBuilder_ = null;
       }
       return this;
     }
@@ -491,17 +455,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return br.com.grpc.iot.Contrato.internal_static_SensorData_descriptor;
+      return br.com.grpc.iot.Contrato.internal_static_DadosResponse_descriptor;
     }
 
     @java.lang.Override
-    public br.com.grpc.iot.SensorData getDefaultInstanceForType() {
-      return br.com.grpc.iot.SensorData.getDefaultInstance();
+    public br.com.grpc.iot.DadosResponse getDefaultInstanceForType() {
+      return br.com.grpc.iot.DadosResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public br.com.grpc.iot.SensorData build() {
-      br.com.grpc.iot.SensorData result = buildPartial();
+    public br.com.grpc.iot.DadosResponse build() {
+      br.com.grpc.iot.DadosResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -509,35 +473,35 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public br.com.grpc.iot.SensorData buildPartial() {
-      br.com.grpc.iot.SensorData result = new br.com.grpc.iot.SensorData(this);
+    public br.com.grpc.iot.DadosResponse buildPartial() {
+      br.com.grpc.iot.DadosResponse result = new br.com.grpc.iot.DadosResponse(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(br.com.grpc.iot.SensorData result) {
+    private void buildPartial0(br.com.grpc.iot.DadosResponse result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.sensorId_ = sensorId_;
-      }
-      if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.temperatura_ = temperatura_;
-      }
-      if (((from_bitField0_ & 0x00000004) != 0)) {
-        result.umidade_ = umidade_;
-      }
-      if (((from_bitField0_ & 0x00000008) != 0)) {
         result.mensagem_ = mensagem_;
       }
-      if (((from_bitField0_ & 0x00000010) != 0)) {
+      if (((from_bitField0_ & 0x00000002) != 0)) {
         result.sucesso_ = sucesso_;
+      }
+      if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.sensorIdEncontrado_ = sensorIdEncontrado_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.temperaturaEncontrada_ = temperaturaEncontrada_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
+        result.umidadeEncontrada_ = umidadeEncontrada_;
       }
       int to_bitField0_ = 0;
       if (((from_bitField0_ & 0x00000020) != 0)) {
-        result.timestamp_ = timestampBuilder_ == null
-            ? timestamp_
-            : timestampBuilder_.build();
+        result.timestampEncontrado_ = timestampEncontradoBuilder_ == null
+            ? timestampEncontrado_
+            : timestampEncontradoBuilder_.build();
         to_bitField0_ |= 0x00000001;
       }
       result.bitField0_ |= to_bitField0_;
@@ -577,37 +541,37 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof br.com.grpc.iot.SensorData) {
-        return mergeFrom((br.com.grpc.iot.SensorData)other);
+      if (other instanceof br.com.grpc.iot.DadosResponse) {
+        return mergeFrom((br.com.grpc.iot.DadosResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(br.com.grpc.iot.SensorData other) {
-      if (other == br.com.grpc.iot.SensorData.getDefaultInstance()) return this;
-      if (!other.getSensorId().isEmpty()) {
-        sensorId_ = other.sensorId_;
-        bitField0_ |= 0x00000001;
-        onChanged();
-      }
-      if (other.getTemperatura() != 0F) {
-        setTemperatura(other.getTemperatura());
-      }
-      if (other.getUmidade() != 0F) {
-        setUmidade(other.getUmidade());
-      }
+    public Builder mergeFrom(br.com.grpc.iot.DadosResponse other) {
+      if (other == br.com.grpc.iot.DadosResponse.getDefaultInstance()) return this;
       if (!other.getMensagem().isEmpty()) {
         mensagem_ = other.mensagem_;
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000001;
         onChanged();
       }
       if (other.getSucesso() != false) {
         setSucesso(other.getSucesso());
       }
-      if (other.hasTimestamp()) {
-        mergeTimestamp(other.getTimestamp());
+      if (!other.getSensorIdEncontrado().isEmpty()) {
+        sensorIdEncontrado_ = other.sensorIdEncontrado_;
+        bitField0_ |= 0x00000004;
+        onChanged();
+      }
+      if (other.getTemperaturaEncontrada() != 0F) {
+        setTemperaturaEncontrada(other.getTemperaturaEncontrada());
+      }
+      if (other.getUmidadeEncontrada() != 0F) {
+        setUmidadeEncontrada(other.getUmidadeEncontrada());
+      }
+      if (other.hasTimestampEncontrado()) {
+        mergeTimestampEncontrado(other.getTimestampEncontrado());
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -636,33 +600,33 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              sensorId_ = input.readStringRequireUtf8();
+              mensagem_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000001;
               break;
             } // case 10
-            case 21: {
-              temperatura_ = input.readFloat();
+            case 16: {
+              sucesso_ = input.readBool();
               bitField0_ |= 0x00000002;
               break;
-            } // case 21
-            case 29: {
-              umidade_ = input.readFloat();
+            } // case 16
+            case 26: {
+              sensorIdEncontrado_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000004;
               break;
-            } // case 29
-            case 34: {
-              mensagem_ = input.readStringRequireUtf8();
+            } // case 26
+            case 37: {
+              temperaturaEncontrada_ = input.readFloat();
               bitField0_ |= 0x00000008;
               break;
-            } // case 34
-            case 40: {
-              sucesso_ = input.readBool();
+            } // case 37
+            case 45: {
+              umidadeEncontrada_ = input.readFloat();
               bitField0_ |= 0x00000010;
               break;
-            } // case 40
+            } // case 45
             case 50: {
               input.readMessage(
-                  getTimestampFieldBuilder().getBuilder(),
+                  getTimestampEncontradoFieldBuilder().getBuilder(),
                   extensionRegistry);
               bitField0_ |= 0x00000020;
               break;
@@ -684,189 +648,9 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object sensorId_ = "";
-    /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
-     * <code>string sensor_id = 1;</code>
-     * @return The sensorId.
-     */
-    public java.lang.String getSensorId() {
-      java.lang.Object ref = sensorId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        sensorId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
-     * <code>string sensor_id = 1;</code>
-     * @return The bytes for sensorId.
-     */
-    public com.google.protobuf.ByteString
-        getSensorIdBytes() {
-      java.lang.Object ref = sensorId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        sensorId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
-     * <code>string sensor_id = 1;</code>
-     * @param value The sensorId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setSensorId(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      sensorId_ = value;
-      bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
-     * <code>string sensor_id = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearSensorId() {
-      sensorId_ = getDefaultInstance().getSensorId();
-      bitField0_ = (bitField0_ & ~0x00000001);
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
-     * <code>string sensor_id = 1;</code>
-     * @param value The bytes for sensorId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setSensorIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      sensorId_ = value;
-      bitField0_ |= 0x00000001;
-      onChanged();
-      return this;
-    }
-
-    private float temperatura_ ;
-    /**
-     * <pre>
-     * Valor da temperatura em Celsius
-     * </pre>
-     *
-     * <code>float temperatura = 2;</code>
-     * @return The temperatura.
-     */
-    @java.lang.Override
-    public float getTemperatura() {
-      return temperatura_;
-    }
-    /**
-     * <pre>
-     * Valor da temperatura em Celsius
-     * </pre>
-     *
-     * <code>float temperatura = 2;</code>
-     * @param value The temperatura to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTemperatura(float value) {
-
-      temperatura_ = value;
-      bitField0_ |= 0x00000002;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Valor da temperatura em Celsius
-     * </pre>
-     *
-     * <code>float temperatura = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearTemperatura() {
-      bitField0_ = (bitField0_ & ~0x00000002);
-      temperatura_ = 0F;
-      onChanged();
-      return this;
-    }
-
-    private float umidade_ ;
-    /**
-     * <pre>
-     * Percentual de umidade
-     * </pre>
-     *
-     * <code>float umidade = 3;</code>
-     * @return The umidade.
-     */
-    @java.lang.Override
-    public float getUmidade() {
-      return umidade_;
-    }
-    /**
-     * <pre>
-     * Percentual de umidade
-     * </pre>
-     *
-     * <code>float umidade = 3;</code>
-     * @param value The umidade to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUmidade(float value) {
-
-      umidade_ = value;
-      bitField0_ |= 0x00000004;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Percentual de umidade
-     * </pre>
-     *
-     * <code>float umidade = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearUmidade() {
-      bitField0_ = (bitField0_ & ~0x00000004);
-      umidade_ = 0F;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object mensagem_ = "";
     /**
-     * <code>string mensagem = 4;</code>
+     * <code>string mensagem = 1;</code>
      * @return The mensagem.
      */
     public java.lang.String getMensagem() {
@@ -882,7 +666,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string mensagem = 4;</code>
+     * <code>string mensagem = 1;</code>
      * @return The bytes for mensagem.
      */
     public com.google.protobuf.ByteString
@@ -899,7 +683,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string mensagem = 4;</code>
+     * <code>string mensagem = 1;</code>
      * @param value The mensagem to set.
      * @return This builder for chaining.
      */
@@ -907,22 +691,22 @@ private static final long serialVersionUID = 0L;
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
       mensagem_ = value;
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string mensagem = 4;</code>
+     * <code>string mensagem = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearMensagem() {
       mensagem_ = getDefaultInstance().getMensagem();
-      bitField0_ = (bitField0_ & ~0x00000008);
+      bitField0_ = (bitField0_ & ~0x00000001);
       onChanged();
       return this;
     }
     /**
-     * <code>string mensagem = 4;</code>
+     * <code>string mensagem = 1;</code>
      * @param value The bytes for mensagem to set.
      * @return This builder for chaining.
      */
@@ -931,14 +715,14 @@ private static final long serialVersionUID = 0L;
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
       mensagem_ = value;
-      bitField0_ |= 0x00000008;
+      bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
 
     private boolean sucesso_ ;
     /**
-     * <code>bool sucesso = 5;</code>
+     * <code>bool sucesso = 2;</code>
      * @return The sucesso.
      */
     @java.lang.Override
@@ -946,183 +730,283 @@ private static final long serialVersionUID = 0L;
       return sucesso_;
     }
     /**
-     * <code>bool sucesso = 5;</code>
+     * <code>bool sucesso = 2;</code>
      * @param value The sucesso to set.
      * @return This builder for chaining.
      */
     public Builder setSucesso(boolean value) {
 
       sucesso_ = value;
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>bool sucesso = 5;</code>
+     * <code>bool sucesso = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearSucesso() {
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000002);
       sucesso_ = false;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.Timestamp timestamp_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampBuilder_;
+    private java.lang.Object sensorIdEncontrado_ = "";
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
-     * @return Whether the timestamp field is set.
+     * <code>string sensor_id_encontrado = 3;</code>
+     * @return The sensorIdEncontrado.
      */
-    public boolean hasTimestamp() {
+    public java.lang.String getSensorIdEncontrado() {
+      java.lang.Object ref = sensorIdEncontrado_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sensorIdEncontrado_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string sensor_id_encontrado = 3;</code>
+     * @return The bytes for sensorIdEncontrado.
+     */
+    public com.google.protobuf.ByteString
+        getSensorIdEncontradoBytes() {
+      java.lang.Object ref = sensorIdEncontrado_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sensorIdEncontrado_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string sensor_id_encontrado = 3;</code>
+     * @param value The sensorIdEncontrado to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSensorIdEncontrado(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      sensorIdEncontrado_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string sensor_id_encontrado = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSensorIdEncontrado() {
+      sensorIdEncontrado_ = getDefaultInstance().getSensorIdEncontrado();
+      bitField0_ = (bitField0_ & ~0x00000004);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string sensor_id_encontrado = 3;</code>
+     * @param value The bytes for sensorIdEncontrado to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSensorIdEncontradoBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      sensorIdEncontrado_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+
+    private float temperaturaEncontrada_ ;
+    /**
+     * <code>float temperatura_encontrada = 4;</code>
+     * @return The temperaturaEncontrada.
+     */
+    @java.lang.Override
+    public float getTemperaturaEncontrada() {
+      return temperaturaEncontrada_;
+    }
+    /**
+     * <code>float temperatura_encontrada = 4;</code>
+     * @param value The temperaturaEncontrada to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTemperaturaEncontrada(float value) {
+
+      temperaturaEncontrada_ = value;
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>float temperatura_encontrada = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTemperaturaEncontrada() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      temperaturaEncontrada_ = 0F;
+      onChanged();
+      return this;
+    }
+
+    private float umidadeEncontrada_ ;
+    /**
+     * <code>float umidade_encontrada = 5;</code>
+     * @return The umidadeEncontrada.
+     */
+    @java.lang.Override
+    public float getUmidadeEncontrada() {
+      return umidadeEncontrada_;
+    }
+    /**
+     * <code>float umidade_encontrada = 5;</code>
+     * @param value The umidadeEncontrada to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUmidadeEncontrada(float value) {
+
+      umidadeEncontrada_ = value;
+      bitField0_ |= 0x00000010;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>float umidade_encontrada = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUmidadeEncontrada() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      umidadeEncontrada_ = 0F;
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.Timestamp timestampEncontrado_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampEncontradoBuilder_;
+    /**
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
+     * @return Whether the timestampEncontrado field is set.
+     */
+    public boolean hasTimestampEncontrado() {
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
-     * @return The timestamp.
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
+     * @return The timestampEncontrado.
      */
-    public com.google.protobuf.Timestamp getTimestamp() {
-      if (timestampBuilder_ == null) {
-        return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+    public com.google.protobuf.Timestamp getTimestampEncontrado() {
+      if (timestampEncontradoBuilder_ == null) {
+        return timestampEncontrado_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestampEncontrado_;
       } else {
-        return timestampBuilder_.getMessage();
+        return timestampEncontradoBuilder_.getMessage();
       }
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
-    public Builder setTimestamp(com.google.protobuf.Timestamp value) {
-      if (timestampBuilder_ == null) {
+    public Builder setTimestampEncontrado(com.google.protobuf.Timestamp value) {
+      if (timestampEncontradoBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        timestamp_ = value;
+        timestampEncontrado_ = value;
       } else {
-        timestampBuilder_.setMessage(value);
+        timestampEncontradoBuilder_.setMessage(value);
       }
       bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
-    public Builder setTimestamp(
+    public Builder setTimestampEncontrado(
         com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (timestampBuilder_ == null) {
-        timestamp_ = builderForValue.build();
+      if (timestampEncontradoBuilder_ == null) {
+        timestampEncontrado_ = builderForValue.build();
       } else {
-        timestampBuilder_.setMessage(builderForValue.build());
+        timestampEncontradoBuilder_.setMessage(builderForValue.build());
       }
       bitField0_ |= 0x00000020;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
-    public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
-      if (timestampBuilder_ == null) {
+    public Builder mergeTimestampEncontrado(com.google.protobuf.Timestamp value) {
+      if (timestampEncontradoBuilder_ == null) {
         if (((bitField0_ & 0x00000020) != 0) &&
-          timestamp_ != null &&
-          timestamp_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
-          getTimestampBuilder().mergeFrom(value);
+          timestampEncontrado_ != null &&
+          timestampEncontrado_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+          getTimestampEncontradoBuilder().mergeFrom(value);
         } else {
-          timestamp_ = value;
+          timestampEncontrado_ = value;
         }
       } else {
-        timestampBuilder_.mergeFrom(value);
+        timestampEncontradoBuilder_.mergeFrom(value);
       }
-      if (timestamp_ != null) {
+      if (timestampEncontrado_ != null) {
         bitField0_ |= 0x00000020;
         onChanged();
       }
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
-    public Builder clearTimestamp() {
+    public Builder clearTimestampEncontrado() {
       bitField0_ = (bitField0_ & ~0x00000020);
-      timestamp_ = null;
-      if (timestampBuilder_ != null) {
-        timestampBuilder_.dispose();
-        timestampBuilder_ = null;
+      timestampEncontrado_ = null;
+      if (timestampEncontradoBuilder_ != null) {
+        timestampEncontradoBuilder_.dispose();
+        timestampEncontradoBuilder_ = null;
       }
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
-    public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
+    public com.google.protobuf.Timestamp.Builder getTimestampEncontradoBuilder() {
       bitField0_ |= 0x00000020;
       onChanged();
-      return getTimestampFieldBuilder().getBuilder();
+      return getTimestampEncontradoFieldBuilder().getBuilder();
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
-    public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
-      if (timestampBuilder_ != null) {
-        return timestampBuilder_.getMessageOrBuilder();
+    public com.google.protobuf.TimestampOrBuilder getTimestampEncontradoOrBuilder() {
+      if (timestampEncontradoBuilder_ != null) {
+        return timestampEncontradoBuilder_.getMessageOrBuilder();
       } else {
-        return timestamp_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
+        return timestampEncontrado_ == null ?
+            com.google.protobuf.Timestamp.getDefaultInstance() : timestampEncontrado_;
       }
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
-     * <code>.google.protobuf.Timestamp timestamp = 6;</code>
+     * <code>.google.protobuf.Timestamp timestamp_encontrado = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getTimestampFieldBuilder() {
-      if (timestampBuilder_ == null) {
-        timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+        getTimestampEncontradoFieldBuilder() {
+      if (timestampEncontradoBuilder_ == null) {
+        timestampEncontradoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getTimestamp(),
+                getTimestampEncontrado(),
                 getParentForChildren(),
                 isClean());
-        timestamp_ = null;
+        timestampEncontrado_ = null;
       }
-      return timestampBuilder_;
+      return timestampEncontradoBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
@@ -1137,23 +1021,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:SensorData)
+    // @@protoc_insertion_point(builder_scope:DadosResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:SensorData)
-  private static final br.com.grpc.iot.SensorData DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:DadosResponse)
+  private static final br.com.grpc.iot.DadosResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new br.com.grpc.iot.SensorData();
+    DEFAULT_INSTANCE = new br.com.grpc.iot.DadosResponse();
   }
 
-  public static br.com.grpc.iot.SensorData getDefaultInstance() {
+  public static br.com.grpc.iot.DadosResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<SensorData>
-      PARSER = new com.google.protobuf.AbstractParser<SensorData>() {
+  private static final com.google.protobuf.Parser<DadosResponse>
+      PARSER = new com.google.protobuf.AbstractParser<DadosResponse>() {
     @java.lang.Override
-    public SensorData parsePartialFrom(
+    public DadosResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1172,17 +1056,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<SensorData> parser() {
+  public static com.google.protobuf.Parser<DadosResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<SensorData> getParserForType() {
+  public com.google.protobuf.Parser<DadosResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public br.com.grpc.iot.SensorData getDefaultInstanceForType() {
+  public br.com.grpc.iot.DadosResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

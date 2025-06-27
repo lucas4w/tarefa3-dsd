@@ -1,8 +1,8 @@
 package br.com.grpc.iot.model;
 
-import javax.persistence.*; // Importe do pacote javax.persistence para Hibernate 5.x
+import javax.persistence.*; 
 import java.util.List;
-import java.io.Serializable; // Boa prática para entidades JPA
+import java.io.Serializable;
 
 @Entity // Indica que esta classe é uma entidade JPA e será mapeada para uma tabela
 @Table(name = "usuarios") // Nome da tabela no banco de dados

@@ -49,11 +49,29 @@ public interface SensorDataOrBuilder extends
   float getUmidade();
 
   /**
+   * <code>string mensagem = 4;</code>
+   * @return The mensagem.
+   */
+  java.lang.String getMensagem();
+  /**
+   * <code>string mensagem = 4;</code>
+   * @return The bytes for mensagem.
+   */
+  com.google.protobuf.ByteString
+      getMensagemBytes();
+
+  /**
+   * <code>bool sucesso = 5;</code>
+   * @return The sucesso.
+   */
+  boolean getSucesso();
+
+  /**
    * <pre>
    * Data e hora da leitura
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp timestamp = 4;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    * @return Whether the timestamp field is set.
    */
   boolean hasTimestamp();
@@ -62,7 +80,7 @@ public interface SensorDataOrBuilder extends
    * Data e hora da leitura
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp timestamp = 4;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    * @return The timestamp.
    */
   com.google.protobuf.Timestamp getTimestamp();
@@ -71,7 +89,7 @@ public interface SensorDataOrBuilder extends
    * Data e hora da leitura
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp timestamp = 4;</code>
+   * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    */
   com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder();
 }

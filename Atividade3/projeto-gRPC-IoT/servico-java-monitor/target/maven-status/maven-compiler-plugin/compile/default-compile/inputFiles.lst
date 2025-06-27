@@ -5,6 +5,10 @@
 /workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/src/main/java/br/com/grpc/iot/model/Usuario.java
 /workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/grpc-java/br/com/grpc/iot/MonitorServiceGrpc.java
 /workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/Contrato.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/DadosRequest.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/DadosRequestOrBuilder.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/DadosResponse.java
+/workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/DadosResponseOrBuilder.java
 /workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/ListarSensoresRequest.java
 /workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/ListarSensoresRequestOrBuilder.java
 /workspaces/tarefa3-dsd/Atividade3/projeto-gRPC-IoT/servico-java-monitor/target/generated-sources/protobuf/java/br/com/grpc/iot/RegistrarSensorRequest.java

@@ -16,6 +16,21 @@ service MonitorService {
   rpc GetUser(UserData) returns (UserResponse);
 
   rpc ListarSensores(ListarSensoresRequest) returns (SensoresResponse);
+
+  rpc GetDados(DadosRequest) returns (DadosResponse);
+}
+
+message DadosRequest{
+  string sensor_id = 1; 
+}
+
+message DadosResponse {
+  string mensagem = 1;    
+  bool sucesso = 2;         
+  string sensor_id_encontrado = 3; 
+  float temperatura_encontrada = 4;
+  float umidade_encontrada = 5;    
+  google.protobuf.Timestamp timestamp_encontrado = 6; 
 }
 
 message ListarSensoresRequest {
@@ -75,7 +90,9 @@ message SensorData {
   string sensor_id = 1;            // Identificador único do sensor
   float temperatura = 2;           // Valor da temperatura em Celsius
   float umidade = 3;               // Percentual de umidade
-  google.protobuf.Timestamp timestamp = 4; // Data e hora da leitura
+  string mensagem = 4;      
+  bool sucesso = 5;
+  google.protobuf.Timestamp timestamp = 6; // Data e hora da leitura
 }
 
 // A mensagem de resposta que o servidor enviará após receber a requisição.

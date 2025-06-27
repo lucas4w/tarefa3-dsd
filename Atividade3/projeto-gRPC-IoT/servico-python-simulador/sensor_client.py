@@ -16,7 +16,9 @@ def display_menu():
     print("\n--- Menu do Cliente gRPC IoT ---")
     print("1. Registrar Novo Sensor")
     print("2. Enviar Dados de Leitura para um Sensor")
-    print("3. Sair")
+    print("3. Exibir Dados de um Sensor")
+    print("4. Listar Sensores")
+    print("5. Sair")
     print("-------------------------------")
 
 def register_user(stub,email):
@@ -98,7 +100,6 @@ def send_sensor_data(stub,sensor_id):
     try:
         response = stub.EnviarDadosSensor(sensor_data_message) # Chamada unária
         print("\n--- RESPOSTA DO SERVIDOR (Enviar Dados) ---")
-        print(f"Mensagem: {response.mensagem}")
         print("------------------------------------------")
     except grpc.RpcError as e:
         print(f"Erro ao enviar dados do sensor: {e.details}")
@@ -114,19 +115,44 @@ def get_userId(stub,email):
         return response.usuario_id
     else:
         return -1
+
+def get_dados(stub,sensor_id):
+    request = contrato_pb2.DadosRequest(sensor_id=sensor_id)
     
-def print_sensores(stub,user_id):
+    try:
+        response = stub.GetDados(request)
+        print("\n--- RESPOSTA DO SERVIDOR ---")
+        print(f"Mensagem: {response.mensagem}")
+        print(f"Sucesso: {response.sucesso}")
+        if response.sucesso:
+            timestamp_dt = response.timestamp_encontrado.ToDatetime()
+            print(f"\n--- Dados da Última Leitura ---")
+            print(f"  Temperatura: {response.temperatura_encontrada:.2f}°C")
+            print(f"  Umidade: {response.umidade_encontrada:.2f}%")
+            print(f"  Data/Hora: {timestamp_dt.strftime('%d/%m/%Y %H:%M:%S')}")
+            print("------------------------------------------")
+        else:
+            print("Não foi possível obter a última leitura.")
+    except grpc.RpcError as e:
+        print(f"Erro ao buscar dados do sensor: {e.details}")
+  
+def print_sensores(stub,user_id,opp):
     sensores = get_sensores(stub,user_id)
     while True:
         for i,sensor in enumerate(sensores, start=1):
             print(f"{i}. {sensor.nome}")
+        if opp == 4:
+            break
         choice = int(input("Informe o número do sensor: "))
         if choice < 1 or choice > len(sensores):
             print("Número inválido")
         else:
             sensor = sensores[choice-1]
             sensor_id = sensor.sensor_id
-            send_sensor_data(stub,sensor_id)
+            if opp == 1:
+                send_sensor_data(stub,sensor_id)
+            elif opp == 2:
+                get_dados(stub,sensor_id)
             break
 
 def get_sensores(stub,user_id):
@@ -158,8 +184,12 @@ def run():
             if choice == '1':
                 register_sensor(stub,user_id)
             elif choice == '2':
-                print_sensores(stub,user_id)
+                print_sensores(stub,user_id,1)
             elif choice == '3':
+                print_sensores(stub,user_id,2)
+            elif choice == '4':
+                print_sensores(stub,user_id,4)
+            elif choice == '5':
                 print("Saindo...")
                 break
             else:
