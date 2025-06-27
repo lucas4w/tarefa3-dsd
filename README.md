@@ -8,8 +8,8 @@ O projeto é um exemplo prático de uma arquitetura de microsserviços **poliglo
 
 Para os testes em sala de aula, operaremos no seguinte modelo:
 
--   **Um Servidor central:** executará o microsserviço do `servico-java-monitor`, um painel de monitoramento que receberá os dados de todos os sensores.
--   **Múltiplos Clientes:** colegas e professor executarão o microsserviço `servico-python-simulador` em suas próprias máquinas. Cada cliente atuará como um sensor IoT, enviando um fluxo de dados para o servidor central através da rede local.
+-   **Um Servidor central:** executará o microsserviço do `servico-java-monitor`, um painel de monitoramento que receberá os dados de todos os sensores e mostrará em tela alguns logs recebidos durante o cadastro de sensores e dados feitos pelos clientes.
+-   **Múltiplos Clientes:** colegas e professor executarão o microsserviço `servico-python-simulador` em suas próprias máquinas. Cada cliente atuará como uma hospedagem de sensores IoT, enviando um fluxo de dados para o servidor central através da rede local.
 
 ```
                     +--------------------------------+
@@ -32,7 +32,7 @@ Para os testes em sala de aula, operaremos no seguinte modelo:
 
 ## Instruções para os Clientes
 
-Para participar do teste, você atuará como um "sensor". Siga os passos abaixo para configurar e executar o cliente Python em sua máquina.
+Para participar do teste, você atuará como um usuário que cadastra um ou mais "sensores" com múltiplos dados. Siga os passos abaixo para configurar e executar o cliente Python em sua máquina.
 
 ### Pré-requisitos
 
@@ -87,7 +87,7 @@ Antes de começar, garanta que você tenha os seguintes programas instalados:
     python sensor_client.py
     ```
 
-6.  **Verifique a saída:** seu terminal começará a exibir mensagens para que você possa registrar um usuário utilizando e-mail e senha, criar um sensor e dá-lhe uma descrição e, por fim, registrar dados nesse(s) sensor(es) cadastrado(s), os quais aparecerão no Monitor (terminal do Servidor).
+6.  **Verifique a saída:** seu terminal começará a exibir mensagens para que você possa registrar um usuário utilizando `e-mail` e `nome de usuário`, registrar um ou mais sensores e dá-lhe(s) uma descrição e, por fim, registrar dados nesse(s) sensor(es) cadastrado(s), os quais seus logs de monitoramento aparecerão no Monitor (terminal do Servidor).
 
     ```
     Resposta do servidor: mensagem: "Usuário registrado com sucesso!" usuario_id: 1 sucesso: true

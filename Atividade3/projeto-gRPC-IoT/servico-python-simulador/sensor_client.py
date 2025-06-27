@@ -37,7 +37,7 @@ def register_user(stub,email):
         print(f"Sucesso: {response.sucesso}")
         if response.sucesso:
             print(f"ID do Usuário: {response.usuario_id}")
-            print(f"Por favor, guarde este ID para registrar sensores para este usuário.")
+            #print(f"Por favor, guarde este ID para registrar sensores para este usuário.")
         print("---------------------------------------------")
     except grpc.RpcError as e:
         print(f"Erro ao registrar usuário: {e.details}")
@@ -65,7 +65,7 @@ def register_sensor(stub,usuario_id):
         print(f"Sucesso: {response.sucesso}")
         if response.sucesso:
             print(f"ID do Sensor: {response.sensor_id}")
-            print(f"Por favor, guarde este ID para enviar dados para este sensor.")
+            #print(f"Por favor, guarde este ID para enviar dados de leitura para este sensor.")
         print("------------------------------------------")
     except grpc.RpcError as e:
         print(f"Erro ao registrar sensor: {e.details}")
