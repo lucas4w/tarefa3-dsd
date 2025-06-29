@@ -16,6 +16,11 @@
         // Adiciona Python
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3.10"
+        },
+        // Node.js
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20",
+            "nodeGypDependencies": true
         }
     },
 

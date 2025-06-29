@@ -176,7 +176,8 @@ def run():
         user_id = get_userId(stub,email)
         if user_id == -1:
             user_id = register_user(stub,email)
-        print("Usuário encontrado com sucesso!")
+        else:
+            print("Usuário encontrado com sucesso!")
         while True:
             display_menu()
             choice = input("Escolha uma opção: ")
