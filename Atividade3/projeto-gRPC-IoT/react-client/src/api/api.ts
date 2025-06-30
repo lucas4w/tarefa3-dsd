@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { UserResponse, SensorListResponse, SensorDataResponse } from '../types/api';
 
-const API_BASE_URL = 'https://bug-free-bassoon-5g49gw9qv5v73p457-8000.app.github.dev/api'; // Ajuste para o endereço da sua API REST
+const API_BASE_URL = 'https://bug-free-bassoon-5g49gw9qv5v73p457-8000.app.github.dev/api';
 
 export const getUserByEmail = async (email: string): Promise<UserResponse> => {
   try {

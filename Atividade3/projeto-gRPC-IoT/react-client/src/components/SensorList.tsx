@@ -66,11 +66,22 @@ const SensorList: React.FC = () => {
             <h2 className="text-xl font-semibold mb-2">{sensor.nome}</h2>
             <p className="text-gray-600 mb-4">{sensor.descricao}</p>
             {sensor.latestData?.sucesso ? (
-              <div>
-                <p><strong>Temperatura:</strong> {sensor.latestData.temperatura_encontrada} °C</p>
-                <p><strong>Umidade:</strong> {sensor.latestData.umidade_encontrada}%</p>
-                <p><strong>Data:</strong> {sensor.latestData.timestamp_encontrado || 'N/A'}</p>
-              </div>
+            <div>
+                <p>
+                    <strong>Temperatura:</strong>{' '}
+                    {sensor.latestData.temperatura_encontrada?.toFixed(2)} °C
+                </p>
+                <p>
+                    <strong>Umidade:</strong>{' '}
+                    {sensor.latestData.umidade_encontrada?.toFixed(2)}%
+                </p>
+                <p>
+                    <strong>Data:</strong>{' '}
+                    {sensor.latestData.timestamp_encontrado
+                    ? new Date(sensor.latestData.timestamp_encontrado).toLocaleString()
+                    : 'N/A'}
+                </p>
+            </div>
             ) : (
               <p className="text-red-500">Sem dados recentes</p>
             )}
