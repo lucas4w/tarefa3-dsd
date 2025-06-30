@@ -1,3 +1,6 @@
 grpcio==1.73.1
 grpcio-tools
 google-api-python-client
+django 
+djangorestframework 
+django-cors-headers
