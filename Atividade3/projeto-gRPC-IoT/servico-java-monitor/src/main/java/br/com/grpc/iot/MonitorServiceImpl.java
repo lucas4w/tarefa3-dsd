@@ -17,9 +17,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import java.util.List;
-import java.util.Collections; // Para retornar listas vazias de forma segura
+import java.util.Collections;
+import java.util.random.*;
 
-// A lógica do nosso serviço. Estendemos a classe base gerada pelo gRPC.
 public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBase {
 
     private final EntityManagerFactory emf;
@@ -36,7 +36,6 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
         RegistrarUsuarioResponse.Builder responseBuilder = RegistrarUsuarioResponse.newBuilder();
 
         try {
-            // Tenta encontrar um usuário com o mesmo email primeiro
             Usuario existingUser = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)
                                      .setParameter("email", request.getEmail())
                                      .getSingleResult();
@@ -47,8 +46,7 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
             System.out.println("❌ Usuário com email " + request.getEmail() + " já existe. ID: " + existingUser.getId());
 
         } catch (NoResultException e) {
-            // Se não encontrou, pode criar um novo usuário
-            Usuario novoUsuario = new Usuario(request.getEmail(), request.getNome()); // <-- Construtor Usuario(String, String)
+            Usuario novoUsuario = new Usuario(request.getEmail(), request.getNome());
             em.persist(novoUsuario);
             em.getTransaction().commit();
             
@@ -206,29 +204,26 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
     @Override
     public void getUser(UserData request, StreamObserver<UserResponse> responseObserver) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin(); // Inicia transação para garantir contexto consistente
+        em.getTransaction().begin();
         UserResponse.Builder responseBuilder = UserResponse.newBuilder();
 
         try {
             Usuario usuario = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)
-                                .setParameter("email", request.getEmail()) // Usa o email da requisição
+                                .setParameter("email", request.getEmail())
                                 .getSingleResult();
-
-            // Se chegou até aqui, o usuário foi encontrado
             em.getTransaction().commit();
             responseBuilder.setSucesso(true)
                            .setUsuarioId(usuario.getId());
             System.out.println("✅ Usuário com email '" + request.getEmail() + "' encontrado. ID: " + usuario.getId());
 
         } catch (NoResultException e) {
-            // Usuário não encontrado
             em.getTransaction().rollback();
             responseBuilder.setSucesso(false);
             System.out.println("❌ Usuário com email '" + request.getEmail() + "' não encontrado.");
         } catch (PersistenceException | IllegalStateException e) {
             System.err.println("Erro de persistência ao consultar usuário: " + e.getMessage());
             if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback(); // Garante que a transação seja revertida em caso de erro
+                em.getTransaction().rollback();
             }
             responseBuilder.setSucesso(false);
         } catch (Exception e) {
@@ -239,28 +234,26 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
             responseBuilder.setSucesso(false);
         } finally {
             em.close();
-            responseObserver.onNext(responseBuilder.build()); // Envia a resposta final
-            responseObserver.onCompleted(); // Completa a chamada RPC
+            responseObserver.onNext(responseBuilder.build()); 
+            responseObserver.onCompleted();
         }
     }
 
     @Override
     public void listarSensores(ListarSensoresRequest request, StreamObserver<SensoresResponse> responseObserver) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin(); // Inicia transação
+        em.getTransaction().begin(); 
         SensoresResponse.Builder responseBuilder = SensoresResponse.newBuilder();
 
         try {
             Usuario usuario = em.find(Usuario.class, request.getUsuarioId());
 
             if (usuario == null) {
-                // Usuário não encontrado
                 em.getTransaction().rollback();
                 responseBuilder.setSucesso(false)
                                .setMensagem("Usuário com ID " + request.getUsuarioId() + " não encontrado.");
                 System.out.println("❌ Usuário com ID " + request.getUsuarioId() + " não encontrado para listar sensores.");
             } else {
-                // Carrega os sensores associados a este usuário
                 List<Sensor> sensoresDoUsuario = usuario.getSensores();
 
                 for (Sensor sensor : sensoresDoUsuario) {
@@ -269,10 +262,10 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
                                                       .setNome(sensor.getNome())
                                                       .setDescricao(sensor.getDescricao() != null ? sensor.getDescricao() : "")
                                                       .build();
-                    responseBuilder.addSensores(sensorInfo); // Adiciona cada SensorInfo à lista
+                    responseBuilder.addSensores(sensorInfo);
                 }
 
-                em.getTransaction().commit(); // Confirma a transação
+                em.getTransaction().commit(); 
                 responseBuilder.setSucesso(true)
                                .setMensagem("Sensores do usuário " + usuario.getNome() + " listados com sucesso. Total: " + sensoresDoUsuario.size());
                 System.out.println("✅ Sensores listados para o usuário " + usuario.getEmail() + ". Total: " + sensoresDoUsuario.size());
@@ -294,8 +287,8 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
                            .setMensagem("Erro interno ao listar sensores.");
         } finally {
             em.close();
-            responseObserver.onNext(responseBuilder.build()); // Envia a resposta final
-            responseObserver.onCompleted(); // Completa a chamada RPC
+            responseObserver.onNext(responseBuilder.build());
+            responseObserver.onCompleted(); 
         }
     }
     @Override
@@ -305,34 +298,32 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
         DadosResponse.Builder responseBuilder = DadosResponse.newBuilder();
 
         try {
-            // CORREÇÃO: Buscar a entidade Sensor pelo seu ID (que é uma String)
+
             Sensor sensor = em.find(Sensor.class, request.getSensorId());
 
             if (sensor == null) {
                 em.getTransaction().rollback();
                 responseBuilder.setSucesso(false) // Corrigido
-                               .setMensagem("Erro: Sensor com ID '" + request.getSensorId() + "' não encontrado."); // Corrigido
+                               .setMensagem("Erro: Sensor com ID '" + request.getSensorId() + "' não encontrado."); 
                 System.out.println("❌ Sensor com ID '" + request.getSensorId() + "' não encontrado para buscar dados.");
-                return; // Sai do método
+                return;
             }
 
-            // Buscar o último DadosSensor para este sensor, ordenado por timestamp
             DadosSensor ultimoDado = em.createQuery(
                 "SELECT d FROM DadosSensor d WHERE d.sensor = :sensor ORDER BY d.timestamp DESC", DadosSensor.class)
                 .setParameter("sensor", sensor)
                 .setMaxResults(1)
-                .getSingleResult(); // Lança NoResultException se não houver dados para o sensor
+                .getSingleResult(); 
 
             em.getTransaction().commit();
             
-            // Converter java.time.Instant para google.protobuf.Timestamp
             Timestamp protoTimestamp = Timestamp.newBuilder()
                 .setSeconds(ultimoDado.getTimestamp().getEpochSecond())
                 .setNanos(ultimoDado.getTimestamp().getNano())
                 .build();
 
-            responseBuilder.setSucesso(true) // Corrigido
-                           .setMensagem("Último dado encontrado para o sensor '" + request.getSensorId() + "'.") // Corrigido
+            responseBuilder.setSucesso(true)
+                           .setMensagem("Último dado encontrado para o sensor '" + request.getSensorId() + "'.") 
                            .setSensorIdEncontrado(ultimoDado.getSensor().getSensorId())
                            .setTemperaturaEncontrada(ultimoDado.getTemperatura())
                            .setUmidadeEncontrada(ultimoDado.getUmidade())
@@ -340,25 +331,87 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
             System.out.println("✅ Último dado encontrado para o sensor '" + request.getSensorId() + "'.");
 
         } catch (NoResultException e) {
-            // Nenhum dado encontrado para o sensor
             em.getTransaction().rollback();
-            responseBuilder.setSucesso(false) // Corrigido
-                           .setMensagem("Nenhum dado de leitura encontrado para o sensor '" + request.getSensorId() + "'."); // Corrigido
+            responseBuilder.setSucesso(false) 
+                           .setMensagem("Nenhum dado de leitura encontrado para o sensor '" + request.getSensorId() + "'."); 
             System.out.println("❌ Nenhum dado de leitura encontrado para o sensor '" + request.getSensorId() + "'.");
         } catch (PersistenceException | IllegalStateException e) {
             System.err.println("Erro de persistência ao buscar dados do sensor: " + e.getMessage());
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            responseBuilder.setSucesso(false) // Corrigido
-                           .setMensagem("Erro ao buscar dados do sensor: " + e.getMessage()); // Corrigido
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro ao buscar dados do sensor: " + e.getMessage()); 
         } catch (Exception e) {
             System.err.println("Erro inesperado ao buscar dados do sensor: " + e.getMessage());
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            responseBuilder.setSucesso(false) // Corrigido
-                           .setMensagem("Erro interno ao buscar dados do sensor."); // Corrigido
+            responseBuilder.setSucesso(false) 
+                           .setMensagem("Erro interno ao buscar dados do sensor."); 
+        } finally {
+            em.close();
+            responseObserver.onNext(responseBuilder.build());
+            responseObserver.onCompleted();
+        }
+    }
+    @Override
+    public void generateData(GenerateDataRequest request, StreamObserver<GenerateDataResponse> responseObserver){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin(); 
+        GenerateDataResponse.Builder responseBuilder = GenerateDataResponse.newBuilder();
+        try {
+            Sensor sensor = em.find(Sensor.class, request.getSensorId());
+
+            if (sensor == null) {
+                em.getTransaction().rollback();
+                responseBuilder.setSucesso(false)
+                               .setMensagem("Erro: Sensor com ID '" + request.getSensorId() + "' não encontrado.");
+                System.out.println("❌ Sensor com ID '" + request.getSensorId() + "' não encontrado para gerar dados.");
+                return; 
+            }
+
+            float temperatura = (float) (20.0 + Math.random() * 15.0); 
+            float umidade = (float) (30.0 + Math.random() * 50.0); 
+            Instant now = Instant.now();
+            Timestamp timestamp = Timestamp.newBuilder()
+                                            .setSeconds(now.getEpochSecond())
+                                            .setNanos(now.getNano())
+                                            .build();
+
+
+            DadosSensor novoDado = new DadosSensor();
+            novoDado.setTemperatura(temperatura);
+            novoDado.setUmidade(umidade);
+            novoDado.setTimestamp(now);
+            novoDado.setSensor(sensor);
+
+            em.persist(novoDado);
+            em.getTransaction().commit();
+
+            responseBuilder.setSucesso(true)
+                           .setMensagem("Dados gerados e persistidos com sucesso!")
+                           .setTemperaturaGerada(temperatura)
+                           .setUmidadeGerada(umidade)       
+                           .setTimestampGerado(timestamp);
+            
+            System.out.printf("[DADO GERADO E PERSISTIDO] Sensor ID: %s | Temperatura: %.2f°C | Umidade: %.2f%% | Data: %s%n",
+                                request.getSensorId(), temperatura, umidade, now);
+
+        } catch (PersistenceException | IllegalStateException e) {
+            System.err.println("Erro de persistência ao gerar dados do sensor: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro ao gerar dados do sensor: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Erro inesperado ao gerar dados do sensor: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro interno ao gerar dados do sensor.");
         } finally {
             em.close();
             responseObserver.onNext(responseBuilder.build());
@@ -366,3 +419,5 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
         }
     }
 }
+
+

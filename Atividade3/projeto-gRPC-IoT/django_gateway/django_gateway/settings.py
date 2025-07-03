@@ -120,10 +120,12 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
     "https://bug-free-bassoon-5g49gw9qv5v73p457-5173.app.github.dev", 
-    "https://bug-free-bassoon-5g49gw9qv5v73p457-8000.app.github.dev",  
+    "https://bug-free-bassoon-5g49gw9qv5v73p457-8000.app.github.dev", 
+    "http://localhost:5173" 
 ]
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/

@@ -18,10 +18,24 @@ service MonitorService {
   rpc ListarSensores(ListarSensoresRequest) returns (SensoresResponse);
 
   rpc GetDados(DadosRequest) returns (DadosResponse);
+
+  rpc GenerateData(GenerateDataRequest) returns (GenerateDataResponse);
+}
+
+message GenerateDataRequest {
+  string sensor_id = 1; 
+}
+
+message GenerateDataResponse {
+  string mensagem = 1;
+  bool sucesso = 2;
+  float temperatura_gerada = 3; 
+  float umidade_gerada = 4;     
+  google.protobuf.Timestamp timestamp_gerado = 5;
 }
 
 message DadosRequest{
-  string sensor_id = 1; 
+  string sensor_id = 1;
 }
 
 message DadosResponse {
@@ -58,44 +72,38 @@ message UserResponse {
   int64 usuario_id = 2;
 }
 
-// A mensagem para requisitar o registro de um usuário.
 message RegistrarUsuarioRequest {
-  string email = 1; // Email único do usuário
-  string nome = 2;  // Nome do usuário
+  string email = 1; 
+  string nome = 2;  
 }
 
-// A mensagem de resposta para o registro de um usuário.
 message RegistrarUsuarioResponse {
-  string mensagem = 1;       // Mensagem de status (sucesso/erro)
-  int64 usuario_id = 2;      // ID do usuário registrado (0 se falha)
-  bool sucesso = 3;          // Indica se a operação foi bem-sucedida
+  string mensagem = 1;       
+  int64 usuario_id = 2;      
+  bool sucesso = 3;      
 }
 
-// A mensagem para requisitar o registro de um sensor.
 message RegistrarSensorRequest {
-  int64 usuario_id = 1;      // ID do usuário ao qual o sensor será associado
-  string nome = 2;           // Nome amigável do sensor
-  string descricao = 3;      // Descrição opcional do sensor
+  int64 usuario_id = 1;      
+  string nome = 2;          
+  string descricao = 3;  
 }
 
-// A mensagem de resposta para o registro de um sensor.
 message RegistrarSensorResponse {
-  string mensagem = 1;       // Mensagem de status (sucesso/erro)
-  string sensor_id = 2;      // ID único do sensor registrado (vazio se falha)
-  bool sucesso = 3;          // Indica se a operação foi bem-sucedida
+  string mensagem = 1;     
+  string sensor_id = 2;    
+  bool sucesso = 3;   
 }
 
-// A mensagem que representa uma única leitura do sensor.
 message SensorData {
-  string sensor_id = 1;            // Identificador único do sensor
-  float temperatura = 2;           // Valor da temperatura em Celsius
-  float umidade = 3;               // Percentual de umidade
+  string sensor_id = 1;           
+  float temperatura = 2;           
+  float umidade = 3;         
   string mensagem = 4;      
   bool sucesso = 5;
-  google.protobuf.Timestamp timestamp = 6; // Data e hora da leitura
+  google.protobuf.Timestamp timestamp = 6; 
 }
 
-// A mensagem de resposta que o servidor enviará após receber a requisição.
 message StatusResposta {
   string mensagem = 1;
   int32 total_leituras_recebidas = 2;

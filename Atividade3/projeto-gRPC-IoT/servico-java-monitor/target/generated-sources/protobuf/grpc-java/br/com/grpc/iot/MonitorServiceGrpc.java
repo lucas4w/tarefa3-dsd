@@ -201,6 +201,37 @@ public final class MonitorServiceGrpc {
     return getGetDadosMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<br.com.grpc.iot.GenerateDataRequest,
+      br.com.grpc.iot.GenerateDataResponse> getGenerateDataMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GenerateData",
+      requestType = br.com.grpc.iot.GenerateDataRequest.class,
+      responseType = br.com.grpc.iot.GenerateDataResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<br.com.grpc.iot.GenerateDataRequest,
+      br.com.grpc.iot.GenerateDataResponse> getGenerateDataMethod() {
+    io.grpc.MethodDescriptor<br.com.grpc.iot.GenerateDataRequest, br.com.grpc.iot.GenerateDataResponse> getGenerateDataMethod;
+    if ((getGenerateDataMethod = MonitorServiceGrpc.getGenerateDataMethod) == null) {
+      synchronized (MonitorServiceGrpc.class) {
+        if ((getGenerateDataMethod = MonitorServiceGrpc.getGenerateDataMethod) == null) {
+          MonitorServiceGrpc.getGenerateDataMethod = getGenerateDataMethod =
+              io.grpc.MethodDescriptor.<br.com.grpc.iot.GenerateDataRequest, br.com.grpc.iot.GenerateDataResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GenerateData"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.GenerateDataRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.GenerateDataResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MonitorServiceMethodDescriptorSupplier("GenerateData"))
+              .build();
+        }
+      }
+    }
+    return getGenerateDataMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -290,6 +321,13 @@ public final class MonitorServiceGrpc {
         io.grpc.stub.StreamObserver<br.com.grpc.iot.DadosResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetDadosMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void generateData(br.com.grpc.iot.GenerateDataRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.GenerateDataResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGenerateDataMethod(), responseObserver);
+    }
   }
 
   /**
@@ -366,6 +404,14 @@ public final class MonitorServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetDadosMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void generateData(br.com.grpc.iot.GenerateDataRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.GenerateDataResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGenerateDataMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -424,6 +470,13 @@ public final class MonitorServiceGrpc {
     public br.com.grpc.iot.DadosResponse getDados(br.com.grpc.iot.DadosRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetDadosMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public br.com.grpc.iot.GenerateDataResponse generateData(br.com.grpc.iot.GenerateDataRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGenerateDataMethod(), getCallOptions(), request);
     }
   }
 
@@ -490,6 +543,14 @@ public final class MonitorServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetDadosMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.grpc.iot.GenerateDataResponse> generateData(
+        br.com.grpc.iot.GenerateDataRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGenerateDataMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTRAR_USUARIO = 0;
@@ -498,6 +559,7 @@ public final class MonitorServiceGrpc {
   private static final int METHODID_GET_USER = 3;
   private static final int METHODID_LISTAR_SENSORES = 4;
   private static final int METHODID_GET_DADOS = 5;
+  private static final int METHODID_GENERATE_DATA = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -539,6 +601,10 @@ public final class MonitorServiceGrpc {
         case METHODID_GET_DADOS:
           serviceImpl.getDados((br.com.grpc.iot.DadosRequest) request,
               (io.grpc.stub.StreamObserver<br.com.grpc.iot.DadosResponse>) responseObserver);
+          break;
+        case METHODID_GENERATE_DATA:
+          serviceImpl.generateData((br.com.grpc.iot.GenerateDataRequest) request,
+              (io.grpc.stub.StreamObserver<br.com.grpc.iot.GenerateDataResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -600,6 +666,13 @@ public final class MonitorServiceGrpc {
               br.com.grpc.iot.DadosRequest,
               br.com.grpc.iot.DadosResponse>(
                 service, METHODID_GET_DADOS)))
+        .addMethod(
+          getGenerateDataMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              br.com.grpc.iot.GenerateDataRequest,
+              br.com.grpc.iot.GenerateDataResponse>(
+                service, METHODID_GENERATE_DATA)))
         .build();
   }
 
@@ -654,6 +727,7 @@ public final class MonitorServiceGrpc {
               .addMethod(getGetUserMethod())
               .addMethod(getListarSensoresMethod())
               .addMethod(getGetDadosMethod())
+              .addMethod(getGenerateDataMethod())
               .build();
         }
       }

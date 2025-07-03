@@ -9,19 +9,11 @@ public interface RegistrarUsuarioResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * Mensagem de status (sucesso/erro)
-   * </pre>
-   *
    * <code>string mensagem = 1;</code>
    * @return The mensagem.
    */
   java.lang.String getMensagem();
   /**
-   * <pre>
-   * Mensagem de status (sucesso/erro)
-   * </pre>
-   *
    * <code>string mensagem = 1;</code>
    * @return The bytes for mensagem.
    */
@@ -29,20 +21,12 @@ public interface RegistrarUsuarioResponseOrBuilder extends
       getMensagemBytes();
 
   /**
-   * <pre>
-   * ID do usuário registrado (0 se falha)
-   * </pre>
-   *
    * <code>int64 usuario_id = 2;</code>
    * @return The usuarioId.
    */
   long getUsuarioId();
 
   /**
-   * <pre>
-   * Indica se a operação foi bem-sucedida
-   * </pre>
-   *
    * <code>bool sucesso = 3;</code>
    * @return The sucesso.
    */

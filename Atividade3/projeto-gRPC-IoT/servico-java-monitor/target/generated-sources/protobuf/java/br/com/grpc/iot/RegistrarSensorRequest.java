@@ -5,10 +5,6 @@
 package br.com.grpc.iot;
 
 /**
- * <pre>
- * A mensagem para requisitar o registro de um sensor.
- * </pre>
- *
  * Protobuf type {@code RegistrarSensorRequest}
  */
 public final class RegistrarSensorRequest extends
@@ -48,10 +44,6 @@ private static final long serialVersionUID = 0L;
   public static final int USUARIO_ID_FIELD_NUMBER = 1;
   private long usuarioId_ = 0L;
   /**
-   * <pre>
-   * ID do usuário ao qual o sensor será associado
-   * </pre>
-   *
    * <code>int64 usuario_id = 1;</code>
    * @return The usuarioId.
    */
@@ -64,10 +56,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private volatile java.lang.Object nome_ = "";
   /**
-   * <pre>
-   * Nome amigável do sensor
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The nome.
    */
@@ -85,10 +73,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Nome amigável do sensor
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The bytes for nome.
    */
@@ -111,10 +95,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private volatile java.lang.Object descricao_ = "";
   /**
-   * <pre>
-   * Descrição opcional do sensor
-   * </pre>
-   *
    * <code>string descricao = 3;</code>
    * @return The descricao.
    */
@@ -132,10 +112,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Descrição opcional do sensor
-   * </pre>
-   *
    * <code>string descricao = 3;</code>
    * @return The bytes for descricao.
    */
@@ -333,10 +309,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * A mensagem para requisitar o registro de um sensor.
-   * </pre>
-   *
    * Protobuf type {@code RegistrarSensorRequest}
    */
   public static final class Builder extends
@@ -534,10 +506,6 @@ private static final long serialVersionUID = 0L;
 
     private long usuarioId_ ;
     /**
-     * <pre>
-     * ID do usuário ao qual o sensor será associado
-     * </pre>
-     *
      * <code>int64 usuario_id = 1;</code>
      * @return The usuarioId.
      */
@@ -546,10 +514,6 @@ private static final long serialVersionUID = 0L;
       return usuarioId_;
     }
     /**
-     * <pre>
-     * ID do usuário ao qual o sensor será associado
-     * </pre>
-     *
      * <code>int64 usuario_id = 1;</code>
      * @param value The usuarioId to set.
      * @return This builder for chaining.
@@ -562,10 +526,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * ID do usuário ao qual o sensor será associado
-     * </pre>
-     *
      * <code>int64 usuario_id = 1;</code>
      * @return This builder for chaining.
      */
@@ -578,10 +538,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object nome_ = "";
     /**
-     * <pre>
-     * Nome amigável do sensor
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @return The nome.
      */
@@ -598,10 +554,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Nome amigável do sensor
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @return The bytes for nome.
      */
@@ -619,10 +571,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Nome amigável do sensor
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @param value The nome to set.
      * @return This builder for chaining.
@@ -636,10 +584,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Nome amigável do sensor
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @return This builder for chaining.
      */
@@ -650,10 +594,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Nome amigável do sensor
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @param value The bytes for nome to set.
      * @return This builder for chaining.
@@ -670,10 +610,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object descricao_ = "";
     /**
-     * <pre>
-     * Descrição opcional do sensor
-     * </pre>
-     *
      * <code>string descricao = 3;</code>
      * @return The descricao.
      */
@@ -690,10 +626,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Descrição opcional do sensor
-     * </pre>
-     *
      * <code>string descricao = 3;</code>
      * @return The bytes for descricao.
      */
@@ -711,10 +643,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Descrição opcional do sensor
-     * </pre>
-     *
      * <code>string descricao = 3;</code>
      * @param value The descricao to set.
      * @return This builder for chaining.
@@ -728,10 +656,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Descrição opcional do sensor
-     * </pre>
-     *
      * <code>string descricao = 3;</code>
      * @return This builder for chaining.
      */
@@ -742,10 +666,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Descrição opcional do sensor
-     * </pre>
-     *
      * <code>string descricao = 3;</code>
      * @param value The bytes for descricao to set.
      * @return This builder for chaining.

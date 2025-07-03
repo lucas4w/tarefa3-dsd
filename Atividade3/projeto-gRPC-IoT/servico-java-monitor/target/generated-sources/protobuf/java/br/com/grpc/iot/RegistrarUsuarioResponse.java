@@ -5,10 +5,6 @@
 package br.com.grpc.iot;
 
 /**
- * <pre>
- * A mensagem de resposta para o registro de um usuário.
- * </pre>
- *
  * Protobuf type {@code RegistrarUsuarioResponse}
  */
 public final class RegistrarUsuarioResponse extends
@@ -48,10 +44,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private volatile java.lang.Object mensagem_ = "";
   /**
-   * <pre>
-   * Mensagem de status (sucesso/erro)
-   * </pre>
-   *
    * <code>string mensagem = 1;</code>
    * @return The mensagem.
    */
@@ -69,10 +61,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Mensagem de status (sucesso/erro)
-   * </pre>
-   *
    * <code>string mensagem = 1;</code>
    * @return The bytes for mensagem.
    */
@@ -94,10 +82,6 @@ private static final long serialVersionUID = 0L;
   public static final int USUARIO_ID_FIELD_NUMBER = 2;
   private long usuarioId_ = 0L;
   /**
-   * <pre>
-   * ID do usuário registrado (0 se falha)
-   * </pre>
-   *
    * <code>int64 usuario_id = 2;</code>
    * @return The usuarioId.
    */
@@ -109,10 +93,6 @@ private static final long serialVersionUID = 0L;
   public static final int SUCESSO_FIELD_NUMBER = 3;
   private boolean sucesso_ = false;
   /**
-   * <pre>
-   * Indica se a operação foi bem-sucedida
-   * </pre>
-   *
    * <code>bool sucesso = 3;</code>
    * @return The sucesso.
    */
@@ -302,10 +282,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * A mensagem de resposta para o registro de um usuário.
-   * </pre>
-   *
    * Protobuf type {@code RegistrarUsuarioResponse}
    */
   public static final class Builder extends
@@ -501,10 +477,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object mensagem_ = "";
     /**
-     * <pre>
-     * Mensagem de status (sucesso/erro)
-     * </pre>
-     *
      * <code>string mensagem = 1;</code>
      * @return The mensagem.
      */
@@ -521,10 +493,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Mensagem de status (sucesso/erro)
-     * </pre>
-     *
      * <code>string mensagem = 1;</code>
      * @return The bytes for mensagem.
      */
@@ -542,10 +510,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Mensagem de status (sucesso/erro)
-     * </pre>
-     *
      * <code>string mensagem = 1;</code>
      * @param value The mensagem to set.
      * @return This builder for chaining.
@@ -559,10 +523,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Mensagem de status (sucesso/erro)
-     * </pre>
-     *
      * <code>string mensagem = 1;</code>
      * @return This builder for chaining.
      */
@@ -573,10 +533,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Mensagem de status (sucesso/erro)
-     * </pre>
-     *
      * <code>string mensagem = 1;</code>
      * @param value The bytes for mensagem to set.
      * @return This builder for chaining.
@@ -593,10 +549,6 @@ private static final long serialVersionUID = 0L;
 
     private long usuarioId_ ;
     /**
-     * <pre>
-     * ID do usuário registrado (0 se falha)
-     * </pre>
-     *
      * <code>int64 usuario_id = 2;</code>
      * @return The usuarioId.
      */
@@ -605,10 +557,6 @@ private static final long serialVersionUID = 0L;
       return usuarioId_;
     }
     /**
-     * <pre>
-     * ID do usuário registrado (0 se falha)
-     * </pre>
-     *
      * <code>int64 usuario_id = 2;</code>
      * @param value The usuarioId to set.
      * @return This builder for chaining.
@@ -621,10 +569,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * ID do usuário registrado (0 se falha)
-     * </pre>
-     *
      * <code>int64 usuario_id = 2;</code>
      * @return This builder for chaining.
      */
@@ -637,10 +581,6 @@ private static final long serialVersionUID = 0L;
 
     private boolean sucesso_ ;
     /**
-     * <pre>
-     * Indica se a operação foi bem-sucedida
-     * </pre>
-     *
      * <code>bool sucesso = 3;</code>
      * @return The sucesso.
      */
@@ -649,10 +589,6 @@ private static final long serialVersionUID = 0L;
       return sucesso_;
     }
     /**
-     * <pre>
-     * Indica se a operação foi bem-sucedida
-     * </pre>
-     *
      * <code>bool sucesso = 3;</code>
      * @param value The sucesso to set.
      * @return This builder for chaining.
@@ -665,10 +601,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Indica se a operação foi bem-sucedida
-     * </pre>
-     *
      * <code>bool sucesso = 3;</code>
      * @return This builder for chaining.
      */

@@ -9,19 +9,11 @@ public interface SensorDataOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * Identificador único do sensor
-   * </pre>
-   *
    * <code>string sensor_id = 1;</code>
    * @return The sensorId.
    */
   java.lang.String getSensorId();
   /**
-   * <pre>
-   * Identificador único do sensor
-   * </pre>
-   *
    * <code>string sensor_id = 1;</code>
    * @return The bytes for sensorId.
    */
@@ -29,20 +21,12 @@ public interface SensorDataOrBuilder extends
       getSensorIdBytes();
 
   /**
-   * <pre>
-   * Valor da temperatura em Celsius
-   * </pre>
-   *
    * <code>float temperatura = 2;</code>
    * @return The temperatura.
    */
   float getTemperatura();
 
   /**
-   * <pre>
-   * Percentual de umidade
-   * </pre>
-   *
    * <code>float umidade = 3;</code>
    * @return The umidade.
    */
@@ -67,28 +51,16 @@ public interface SensorDataOrBuilder extends
   boolean getSucesso();
 
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
    * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    * @return Whether the timestamp field is set.
    */
   boolean hasTimestamp();
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
    * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    * @return The timestamp.
    */
   com.google.protobuf.Timestamp getTimestamp();
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
    * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    */
   com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder();

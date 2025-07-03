@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.io.Serializable;
 
-@Entity // Indica que esta classe é uma entidade JPA e será mapeada para uma tabela
+@EntityManager
 @Table(name = "usuarios") // Nome da tabela no banco de dados
 public class Usuario implements Serializable {
 

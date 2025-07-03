@@ -9,19 +9,11 @@ public interface RegistrarSensorResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * Mensagem de status (sucesso/erro)
-   * </pre>
-   *
    * <code>string mensagem = 1;</code>
    * @return The mensagem.
    */
   java.lang.String getMensagem();
   /**
-   * <pre>
-   * Mensagem de status (sucesso/erro)
-   * </pre>
-   *
    * <code>string mensagem = 1;</code>
    * @return The bytes for mensagem.
    */
@@ -29,19 +21,11 @@ public interface RegistrarSensorResponseOrBuilder extends
       getMensagemBytes();
 
   /**
-   * <pre>
-   * ID único do sensor registrado (vazio se falha)
-   * </pre>
-   *
    * <code>string sensor_id = 2;</code>
    * @return The sensorId.
    */
   java.lang.String getSensorId();
   /**
-   * <pre>
-   * ID único do sensor registrado (vazio se falha)
-   * </pre>
-   *
    * <code>string sensor_id = 2;</code>
    * @return The bytes for sensorId.
    */
@@ -49,10 +33,6 @@ public interface RegistrarSensorResponseOrBuilder extends
       getSensorIdBytes();
 
   /**
-   * <pre>
-   * Indica se a operação foi bem-sucedida
-   * </pre>
-   *
    * <code>bool sucesso = 3;</code>
    * @return The sucesso.
    */

@@ -9,19 +9,11 @@ public interface RegistrarUsuarioRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * Email único do usuário
-   * </pre>
-   *
    * <code>string email = 1;</code>
    * @return The email.
    */
   java.lang.String getEmail();
   /**
-   * <pre>
-   * Email único do usuário
-   * </pre>
-   *
    * <code>string email = 1;</code>
    * @return The bytes for email.
    */
@@ -29,19 +21,11 @@ public interface RegistrarUsuarioRequestOrBuilder extends
       getEmailBytes();
 
   /**
-   * <pre>
-   * Nome do usuário
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The nome.
    */
   java.lang.String getNome();
   /**
-   * <pre>
-   * Nome do usuário
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The bytes for nome.
    */

@@ -5,10 +5,6 @@
 package br.com.grpc.iot;
 
 /**
- * <pre>
- * A mensagem para requisitar o registro de um usuário.
- * </pre>
- *
  * Protobuf type {@code RegistrarUsuarioRequest}
  */
 public final class RegistrarUsuarioRequest extends
@@ -49,10 +45,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private volatile java.lang.Object email_ = "";
   /**
-   * <pre>
-   * Email único do usuário
-   * </pre>
-   *
    * <code>string email = 1;</code>
    * @return The email.
    */
@@ -70,10 +62,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Email único do usuário
-   * </pre>
-   *
    * <code>string email = 1;</code>
    * @return The bytes for email.
    */
@@ -96,10 +84,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private volatile java.lang.Object nome_ = "";
   /**
-   * <pre>
-   * Nome do usuário
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The nome.
    */
@@ -117,10 +101,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Nome do usuário
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The bytes for nome.
    */
@@ -306,10 +286,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * A mensagem para requisitar o registro de um usuário.
-   * </pre>
-   *
    * Protobuf type {@code RegistrarUsuarioRequest}
    */
   public static final class Builder extends
@@ -495,10 +471,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object email_ = "";
     /**
-     * <pre>
-     * Email único do usuário
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return The email.
      */
@@ -515,10 +487,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Email único do usuário
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return The bytes for email.
      */
@@ -536,10 +504,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Email único do usuário
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @param value The email to set.
      * @return This builder for chaining.
@@ -553,10 +517,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Email único do usuário
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @return This builder for chaining.
      */
@@ -567,10 +527,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Email único do usuário
-     * </pre>
-     *
      * <code>string email = 1;</code>
      * @param value The bytes for email to set.
      * @return This builder for chaining.
@@ -587,10 +543,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object nome_ = "";
     /**
-     * <pre>
-     * Nome do usuário
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @return The nome.
      */
@@ -607,10 +559,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Nome do usuário
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @return The bytes for nome.
      */
@@ -628,10 +576,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Nome do usuário
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @param value The nome to set.
      * @return This builder for chaining.
@@ -645,10 +589,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Nome do usuário
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @return This builder for chaining.
      */
@@ -659,10 +599,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Nome do usuário
-     * </pre>
-     *
      * <code>string nome = 2;</code>
      * @param value The bytes for nome to set.
      * @return This builder for chaining.

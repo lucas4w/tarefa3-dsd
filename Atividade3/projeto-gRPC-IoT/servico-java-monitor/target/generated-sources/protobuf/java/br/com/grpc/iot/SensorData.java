@@ -5,10 +5,6 @@
 package br.com.grpc.iot;
 
 /**
- * <pre>
- * A mensagem que representa uma única leitura do sensor.
- * </pre>
- *
  * Protobuf type {@code SensorData}
  */
 public final class SensorData extends
@@ -50,10 +46,6 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings("serial")
   private volatile java.lang.Object sensorId_ = "";
   /**
-   * <pre>
-   * Identificador único do sensor
-   * </pre>
-   *
    * <code>string sensor_id = 1;</code>
    * @return The sensorId.
    */
@@ -71,10 +63,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Identificador único do sensor
-   * </pre>
-   *
    * <code>string sensor_id = 1;</code>
    * @return The bytes for sensorId.
    */
@@ -96,10 +84,6 @@ private static final long serialVersionUID = 0L;
   public static final int TEMPERATURA_FIELD_NUMBER = 2;
   private float temperatura_ = 0F;
   /**
-   * <pre>
-   * Valor da temperatura em Celsius
-   * </pre>
-   *
    * <code>float temperatura = 2;</code>
    * @return The temperatura.
    */
@@ -111,10 +95,6 @@ private static final long serialVersionUID = 0L;
   public static final int UMIDADE_FIELD_NUMBER = 3;
   private float umidade_ = 0F;
   /**
-   * <pre>
-   * Percentual de umidade
-   * </pre>
-   *
    * <code>float umidade = 3;</code>
    * @return The umidade.
    */
@@ -176,10 +156,6 @@ private static final long serialVersionUID = 0L;
   public static final int TIMESTAMP_FIELD_NUMBER = 6;
   private com.google.protobuf.Timestamp timestamp_;
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
    * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    * @return Whether the timestamp field is set.
    */
@@ -188,10 +164,6 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
    * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    * @return The timestamp.
    */
@@ -200,10 +172,6 @@ private static final long serialVersionUID = 0L;
     return timestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : timestamp_;
   }
   /**
-   * <pre>
-   * Data e hora da leitura
-   * </pre>
-   *
    * <code>.google.protobuf.Timestamp timestamp = 6;</code>
    */
   @java.lang.Override
@@ -432,10 +400,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * A mensagem que representa uma única leitura do sensor.
-   * </pre>
-   *
    * Protobuf type {@code SensorData}
    */
   public static final class Builder extends
@@ -686,10 +650,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object sensorId_ = "";
     /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
      * <code>string sensor_id = 1;</code>
      * @return The sensorId.
      */
@@ -706,10 +666,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
      * <code>string sensor_id = 1;</code>
      * @return The bytes for sensorId.
      */
@@ -727,10 +683,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
      * <code>string sensor_id = 1;</code>
      * @param value The sensorId to set.
      * @return This builder for chaining.
@@ -744,10 +696,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
      * <code>string sensor_id = 1;</code>
      * @return This builder for chaining.
      */
@@ -758,10 +706,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Identificador único do sensor
-     * </pre>
-     *
      * <code>string sensor_id = 1;</code>
      * @param value The bytes for sensorId to set.
      * @return This builder for chaining.
@@ -778,10 +722,6 @@ private static final long serialVersionUID = 0L;
 
     private float temperatura_ ;
     /**
-     * <pre>
-     * Valor da temperatura em Celsius
-     * </pre>
-     *
      * <code>float temperatura = 2;</code>
      * @return The temperatura.
      */
@@ -790,10 +730,6 @@ private static final long serialVersionUID = 0L;
       return temperatura_;
     }
     /**
-     * <pre>
-     * Valor da temperatura em Celsius
-     * </pre>
-     *
      * <code>float temperatura = 2;</code>
      * @param value The temperatura to set.
      * @return This builder for chaining.
@@ -806,10 +742,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Valor da temperatura em Celsius
-     * </pre>
-     *
      * <code>float temperatura = 2;</code>
      * @return This builder for chaining.
      */
@@ -822,10 +754,6 @@ private static final long serialVersionUID = 0L;
 
     private float umidade_ ;
     /**
-     * <pre>
-     * Percentual de umidade
-     * </pre>
-     *
      * <code>float umidade = 3;</code>
      * @return The umidade.
      */
@@ -834,10 +762,6 @@ private static final long serialVersionUID = 0L;
       return umidade_;
     }
     /**
-     * <pre>
-     * Percentual de umidade
-     * </pre>
-     *
      * <code>float umidade = 3;</code>
      * @param value The umidade to set.
      * @return This builder for chaining.
@@ -850,10 +774,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Percentual de umidade
-     * </pre>
-     *
      * <code>float umidade = 3;</code>
      * @return This builder for chaining.
      */
@@ -972,10 +892,6 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampBuilder_;
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      * @return Whether the timestamp field is set.
      */
@@ -983,10 +899,6 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000020) != 0);
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      * @return The timestamp.
      */
@@ -998,10 +910,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     public Builder setTimestamp(com.google.protobuf.Timestamp value) {
@@ -1018,10 +926,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     public Builder setTimestamp(
@@ -1036,10 +940,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     public Builder mergeTimestamp(com.google.protobuf.Timestamp value) {
@@ -1061,10 +961,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     public Builder clearTimestamp() {
@@ -1078,10 +974,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
@@ -1090,10 +982,6 @@ private static final long serialVersionUID = 0L;
       return getTimestampFieldBuilder().getBuilder();
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimestampOrBuilder() {
@@ -1105,10 +993,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Data e hora da leitura
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp timestamp = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

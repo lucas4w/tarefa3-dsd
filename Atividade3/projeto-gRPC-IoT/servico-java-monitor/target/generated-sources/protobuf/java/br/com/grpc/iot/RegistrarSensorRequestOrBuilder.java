@@ -9,29 +9,17 @@ public interface RegistrarSensorRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   * ID do usuário ao qual o sensor será associado
-   * </pre>
-   *
    * <code>int64 usuario_id = 1;</code>
    * @return The usuarioId.
    */
   long getUsuarioId();
 
   /**
-   * <pre>
-   * Nome amigável do sensor
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The nome.
    */
   java.lang.String getNome();
   /**
-   * <pre>
-   * Nome amigável do sensor
-   * </pre>
-   *
    * <code>string nome = 2;</code>
    * @return The bytes for nome.
    */
@@ -39,19 +27,11 @@ public interface RegistrarSensorRequestOrBuilder extends
       getNomeBytes();
 
   /**
-   * <pre>
-   * Descrição opcional do sensor
-   * </pre>
-   *
    * <code>string descricao = 3;</code>
    * @return The descricao.
    */
   java.lang.String getDescricao();
   /**
-   * <pre>
-   * Descrição opcional do sensor
-   * </pre>
-   *
    * <code>string descricao = 3;</code>
    * @return The bytes for descricao.
    */

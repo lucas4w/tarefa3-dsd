@@ -5,10 +5,6 @@
 package br.com.grpc.iot;
 
 /**
- * <pre>
- * A mensagem de resposta que o servidor enviará após receber a requisição.
- * </pre>
- *
  * Protobuf type {@code StatusResposta}
  */
 public final class StatusResposta extends
@@ -285,10 +281,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * <pre>
-   * A mensagem de resposta que o servidor enviará após receber a requisição.
-   * </pre>
-   *
    * Protobuf type {@code StatusResposta}
    */
   public static final class Builder extends
