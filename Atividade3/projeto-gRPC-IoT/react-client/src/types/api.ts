@@ -8,6 +8,12 @@ export interface Sensor {
   sensor_id: string;
   nome: string;
   descricao: string;
+  usuario_id: number;
+}
+export interface SensorUpdateResponse {
+  sucesso: boolean;
+  mensagem?: string;
+  updated_sensor?: Sensor;
 }
 
 export interface SensorListResponse {
@@ -45,7 +51,7 @@ export interface SensorRegistrationRequest {
 export interface SensorRegistrationResponse {
   sucesso: boolean;
   mensagem?: string;
-  sensor_id?: number;
+  sensor_id?: string;
 }
 
 export interface UserRegistrationRequest {

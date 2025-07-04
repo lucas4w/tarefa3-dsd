@@ -1,8 +1,8 @@
 import axios from 'axios';
 import type { UserResponse, SensorListResponse, SensorDataResponse, SensorRegistrationRequest,
-   SensorRegistrationResponse, UserRegistrationRequest, UserRegistrationResponse, GenerateDataResponse } from '../types/api';
+   SensorRegistrationResponse, UserRegistrationRequest, UserRegistrationResponse, GenerateDataResponse, Sensor } from '../types/api';
 
-const API_BASE_URL = 'https://bug-free-bassoon-5g49gw9qv5v73p457-8000.app.github.dev/api';
+const API_BASE_URL = 'https://upgraded-doodle-v67wjvj6w9q39p4-8000.app.github.dev/api';
 
 export const getUserByEmail = async (email: string): Promise<UserResponse> => {
   try {
@@ -99,14 +99,13 @@ export const registerUser = async (userData: UserRegistrationRequest): Promise<U
   }
 };
 
-export const generateSensorData = async (sensorId: number): Promise<GenerateDataResponse> => { // Ajuste o tipo de retorno conforme sua API
+export const generateSensorData = async (sensorId: string): Promise<GenerateDataResponse> => { 
   try {
-    const response = await fetch(`${API_BASE_URL}/sensors/${sensorId}/generate-data/`, { // URL da sua API para gerar dados
-      method: 'POST', // Geralmente é um POST para acionar uma ação
+    const response = await fetch(`${API_BASE_URL}/sensors/${sensorId}/generate-data/`, { 
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      // body: JSON.stringify({ /* qualquer dado adicional que sua API precise */ }),
     });
 
     if (!response.ok) {
@@ -120,10 +119,37 @@ export const generateSensorData = async (sensorId: number): Promise<GenerateData
       }
       throw new Error(errorMessage);
     }
-    // Supondo que a API retorne um JSON simples de sucesso/falha
     return await response.json();
   } catch (error: any) {
     console.error('Erro na API ao gerar dados para sensor:', error);
+    return { sucesso: false, mensagem: error.message || 'Erro desconhecido' };
+  }
+};
+
+export const updateSensor = async (sensorId: string, updatedSensorData: Sensor): Promise<SensorUpdateResponse> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/sensors/${sensorId}/`, { // Ajuste a URL da sua API para atualização
+      method: 'PUT', // Ou 'PATCH', dependendo da sua API
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedSensorData),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      let errorMessage = `Erro na requisição: ${response.status} ${response.statusText}`;
+      try {
+        const errorData = JSON.parse(errorText);
+        errorMessage = errorData.mensagem || errorData.error || errorMessage;
+      } catch (jsonError) {
+        errorMessage = errorText || errorMessage;
+      }
+      throw new Error(errorMessage);
+    }
+    return await response.json();
+  } catch (error: any) {
+    console.error('Erro na API ao atualizar sensor:', error);
     return { sucesso: false, mensagem: error.message || 'Erro desconhecido' };
   }
 };

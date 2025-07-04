@@ -119,9 +119,11 @@ USE_TZ = True
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://bug-free-bassoon-5g49gw9qv5v73p457-5173.app.github.dev", 
-    "https://bug-free-bassoon-5g49gw9qv5v73p457-8000.app.github.dev", 
-    "http://localhost:5173" 
+    "https://upgraded-doodle-v67wjvj6w9q39p4-5173.app.github.dev",  # frontend React
+    "https://upgraded-doodle-v67wjvj6w9q39p4-8000.app.github.dev",  # backend Django
+
+    "http://localhost:5173",  # útil para testes locais
+    "https://localhost:5173",
 ]
 CORS_ALLOW_CREDENTIALS = True
 

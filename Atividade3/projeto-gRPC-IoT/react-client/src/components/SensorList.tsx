@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useCallback } from 'react'; // Adicione useCallback
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUserSensors, getLatestSensorData } from '../api/api';
 import type { Sensor, SensorDataResponse } from '../types/api';
 import NewSensorButton from './NewSensorButton';
-import GenerateSensorDataButton from './GenerateSensorDataButton'; // <--- Importe o novo botão
+import GenerateSensorDataButton from './GenerateSensorDataButton';
+import EditSensorButton from './EditSensorButton';
 
 interface SensorWithData extends Sensor {
   latestData?: SensorDataResponse;
+  isLoadingData?: boolean;
 }
 
 const SensorList: React.FC = () => {
@@ -15,20 +17,23 @@ const SensorList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Função para buscar TODOS os sensores e seus dados (usada no carregamento inicial e ao registrar novo sensor)
-  const fetchSensorsAndData = useCallback(async () => { // Use useCallback para otimização
+  const fetchSensorsAndData = useCallback(async () => {
     try {
       setLoading(true);
       const sensorResponse = await getUserSensors(Number(userId));
       if (sensorResponse.sucesso) {
-        const sensorsWithData: SensorWithData[] = sensorResponse.sensores;
+        // Mapear para garantir que sensor_id seja string, caso a API retorne como number por engano
+        const sensorsWithCorrectIdType: Sensor[] = sensorResponse.sensores.map((s: any) => ({
+          ...s,
+          sensor_id: String(s.sensor_id) // <--- Garante que seja string
+        }));
 
-        const dataPromises = sensorResponse.sensores.map((sensor) =>
+        const dataPromises = sensorsWithCorrectIdType.map((sensor) =>
           getLatestSensorData(sensor.sensor_id)
         );
         const dataResponses = await Promise.all(dataPromises);
 
-        const updatedSensors = sensorsWithData.map((sensor, index) => ({
+        const updatedSensors = sensorsWithCorrectIdType.map((sensor, index) => ({
           ...sensor,
           latestData: dataResponses[index],
         }));
@@ -45,24 +50,22 @@ const SensorList: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [userId]); // Dependência do useCallback
+  }, [userId]);
 
-  // NOVA FUNÇÃO: Para atualizar os dados de UM sensor específico
-  const handleGenerateDataForSensor = useCallback(async (sensorId: number) => {
-    // Definir o estado de carregamento para o sensor específico (opcional, para feedback visual)
+  const handleGenerateDataForSensor = useCallback(async (sensorId: string) => { // <--- sensorId CORRIGIDO PARA STRING
     setSensors((prevSensors) =>
       prevSensors.map((s) => (s.sensor_id === sensorId ? { ...s, isLoadingData: true } : s))
     );
 
     try {
-      const latestDataResponse = await getLatestSensorData(sensorId);
+      const latestDataResponse = await getLatestSensorData(sensorId); // <--- sensorId passado como string
       setSensors((prevSensors) =>
         prevSensors.map((s) =>
           s.sensor_id === sensorId
             ? {
                 ...s,
                 latestData: latestDataResponse,
-                isLoadingData: false, // Remove o estado de carregamento
+                isLoadingData: false,
               }
             : s
         )
@@ -72,16 +75,20 @@ const SensorList: React.FC = () => {
       setSensors((prevSensors) =>
         prevSensors.map((s) =>
           s.sensor_id === sensorId
-            ? { ...s, isLoadingData: false, latestData: { ...s.latestData, sucesso: false, mensagem: "Erro ao carregar dados" } as SensorDataResponse } // Adiciona mensagem de erro ao sensor
+            ? { ...s, isLoadingData: false, latestData: { sucesso: false, mensagem: "Erro ao carregar dados" } as SensorDataResponse }
             : s
         )
       );
     }
   }, []);
 
+  const handleSensorUpdated = useCallback(() => {
+    fetchSensorsAndData();
+  }, [fetchSensorsAndData]);
+
   useEffect(() => {
     fetchSensorsAndData();
-  }, [userId, fetchSensorsAndData]); // Inclua fetchSensorsAndData como dependência
+  }, [userId, fetchSensorsAndData]);
 
   if (loading && sensors.length === 0) {
     return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
@@ -100,12 +107,11 @@ const SensorList: React.FC = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {sensors.map((sensor) => (
           <div
-            key={sensor.sensor_id}
+            key={sensor.sensor_id} // <--- key usa string
             className="bg-white p-6 rounded-lg shadow-md"
           >
             <h2 className="text-xl font-semibold mb-2">{sensor.nome}</h2>
             <p className="text-gray-600 mb-4">{sensor.descricao}</p>
-            {/* Exibe os dados do sensor */}
             {sensor.latestData?.sucesso ? (
               <div>
                 <p>
@@ -126,10 +132,17 @@ const SensorList: React.FC = () => {
             ) : (
               <p className="text-red-500">Sem dados recentes</p>
             )}
-            <GenerateSensorDataButton
-              sensorId={sensor.sensor_id}
-              onDataGenerated={handleGenerateDataForSensor} 
-            />
+            <div className="flex justify-start items-center gap-2">
+              <GenerateSensorDataButton
+                sensorId={sensor.sensor_id} // <--- sensor_id passado como string
+                onDataGenerated={handleGenerateDataForSensor}
+              />
+              <EditSensorButton
+                userId={Number(userId)}
+                sensor={sensor} // sensor.sensor_id é string aqui
+                onSensorUpdated={handleSensorUpdated}
+              />
+            </div>
           </div>
         ))}
       </div>

@@ -1,9 +1,10 @@
+// src/components/GenerateSensorDataButton.tsx
 import React, { useState } from 'react';
-import { generateSensorData } from '../api/api'; 
+import { generateSensorData } from '../api/api';
 
 interface GenerateSensorDataButtonProps {
-  sensorId: number;
-  onDataGenerated: (sensorId: number) => void;
+  sensorId: string; // <--- CORRIGIDO PARA STRING
+  onDataGenerated: (sensorId: string) => void; // <--- CORRIGIDO PARA STRING
 }
 
 const GenerateSensorDataButton: React.FC<GenerateSensorDataButtonProps> = ({
@@ -17,7 +18,7 @@ const GenerateSensorDataButton: React.FC<GenerateSensorDataButtonProps> = ({
     setLoading(true);
     setError('');
     try {
-      const response = await generateSensorData(sensorId); 
+      const response = await generateSensorData(sensorId); // sensorId passado como string
 
       if (response.sucesso) {
         onDataGenerated(sensorId);
@@ -39,7 +40,7 @@ const GenerateSensorDataButton: React.FC<GenerateSensorDataButtonProps> = ({
         className="mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded text-sm disabled:opacity-50"
         disabled={loading}
       >
-        {loading ? 'Gerando...' : 'Gerar Dados'}
+        {loading ? 'Gerando...' : 'Gerar Dados Agora'}
       </button>
       {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>

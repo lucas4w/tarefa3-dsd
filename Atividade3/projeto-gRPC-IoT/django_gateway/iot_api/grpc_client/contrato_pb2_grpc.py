@@ -69,6 +69,11 @@ class MonitorServiceStub(object):
                 request_serializer=contrato__pb2.GenerateDataRequest.SerializeToString,
                 response_deserializer=contrato__pb2.GenerateDataResponse.FromString,
                 _registered_method=True)
+        self.UpdateSensor = channel.unary_unary(
+                '/MonitorService/UpdateSensor',
+                request_serializer=contrato__pb2.UpdateSensorRequest.SerializeToString,
+                response_deserializer=contrato__pb2.UpdateSensorResponse.FromString,
+                _registered_method=True)
 
 
 class MonitorServiceServicer(object):
@@ -116,6 +121,12 @@ class MonitorServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UpdateSensor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MonitorServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -153,6 +164,11 @@ def add_MonitorServiceServicer_to_server(servicer, server):
                     servicer.GenerateData,
                     request_deserializer=contrato__pb2.GenerateDataRequest.FromString,
                     response_serializer=contrato__pb2.GenerateDataResponse.SerializeToString,
+            ),
+            'UpdateSensor': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateSensor,
+                    request_deserializer=contrato__pb2.UpdateSensorRequest.FromString,
+                    response_serializer=contrato__pb2.UpdateSensorResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -344,6 +360,33 @@ class MonitorService(object):
             '/MonitorService/GenerateData',
             contrato__pb2.GenerateDataRequest.SerializeToString,
             contrato__pb2.GenerateDataResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def UpdateSensor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MonitorService/UpdateSensor',
+            contrato__pb2.UpdateSensorRequest.SerializeToString,
+            contrato__pb2.UpdateSensorResponse.FromString,
             options,
             channel_credentials,
             insecure,

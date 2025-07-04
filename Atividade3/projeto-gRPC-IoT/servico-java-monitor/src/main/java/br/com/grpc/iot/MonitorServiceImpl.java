@@ -418,6 +418,71 @@ public class MonitorServiceImpl extends MonitorServiceGrpc.MonitorServiceImplBas
             responseObserver.onCompleted();
         }
     }
+
+    @Override
+    public void updateSensor(UpdateSensorRequest request, StreamObserver<UpdateSensorResponse> responseObserver) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        UpdateSensorResponse.Builder responseBuilder = UpdateSensorResponse.newBuilder();
+
+        try {
+            // 1. Encontrar o sensor pelo ID
+            Sensor sensor = em.find(Sensor.class, request.getSensorId());
+
+            if (sensor == null) {
+                em.getTransaction().rollback();
+                responseBuilder.setSucesso(false)
+                               .setMensagem("Erro: Sensor com ID '" + request.getSensorId() + "' não encontrado para atualização.");
+                System.out.println("❌ Sensor com ID '" + request.getSensorId() + "' não encontrado para atualização.");
+                return; // Encerra o método, pois não há sensor para atualizar
+            }
+
+            // 2. Atualizar os campos do sensor com os dados da requisição
+            // Verifique se os campos estão presentes na requisição antes de atualizar
+            if (request.hasNome()) { // Usar hasNome() ou equivalente se você quiser atualização parcial
+                sensor.setNome(request.getNome());
+            }
+            if (request.hasDescricao()) { // Usar hasDescricao()
+                sensor.setDescricao(request.getDescricao());
+            }
+            // Adicione aqui a lógica para outros campos que podem ser atualizados
+
+            // 3. Persistir as alterações
+            em.merge(sensor); // merge é usado para re-anexar ou atualizar entidades
+            em.getTransaction().commit();
+
+            // 4. Construir a resposta de sucesso
+            SensorInfo updatedSensorInfo = SensorInfo.newBuilder()
+                                                    .setSensorId(sensor.getSensorId())
+                                                    .setNome(sensor.getNome())
+                                                    .setDescricao(sensor.getDescricao() != null ? sensor.getDescricao() : "")
+                                                    .build();
+
+            responseBuilder.setSucesso(true)
+                           .setMensagem("Sensor '" + sensor.getSensorId() + "' atualizado com sucesso!")
+                           .setUpdatedSensor(updatedSensorInfo); // Retorna o sensor atualizado
+            System.out.println("✅ Sensor '" + sensor.getSensorId() + "' atualizado: Nome: " + sensor.getNome() + ", Descrição: " + sensor.getDescricao());
+
+        } catch (PersistenceException | IllegalStateException e) {
+            System.err.println("Erro de persistência ao atualizar sensor: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro ao atualizar sensor: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Erro inesperado ao atualizar sensor: " + e.getMessage());
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            responseBuilder.setSucesso(false)
+                           .setMensagem("Erro interno ao atualizar sensor.");
+        } finally {
+            em.close();
+            responseObserver.onNext(responseBuilder.build());
+            responseObserver.onCompleted();
+        }
+    }
 }
 
 

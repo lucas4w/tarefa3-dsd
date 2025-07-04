@@ -204,3 +204,77 @@ class GetUserByEmailView(APIView):
             return Response({"error": error_message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         finally:
             channel.close()
+
+class SensorUpdateView(APIView):
+    """
+    Endpoint para atualizar um sensor existente.
+    Recebe PUT: /api/sensors/<str:sensor_id>/
+    """
+    def put(self, request, sensor_id):
+        # Campos que podem ser atualizados
+        nome = request.data.get('nome')
+        descricao = request.data.get('descricao')
+        # Adicione outros campos do sensor que você permite atualizar
+
+        # Validação básica
+        if not nome and not descricao:
+            return Response({"error": "Pelo menos 'nome' ou 'descricao' deve ser fornecido para atualização."},
+                            status=status.HTTP_400_BAD_REQUEST)
+        
+        stub, channel = get_grpc_stub()
+        try:
+            # Cria a requisição gRPC para UpdateSensor
+            # Note que os campos nome e descricao são passados condicionalmente
+            # O gRPC protobuf Python gera automaticamente métodos 'HasField' para campos opcionais
+            # mas para campos string, um valor vazio ('') é o padrão se não for definido.
+            # Para campos que você quer que sejam "unset" (sem alteração) se não forem fornecidos,
+            # você pode omiti-los da requisição gRPC, se o seu .proto os definir como opcionais.
+            # No entanto, para strings, passar '' geralmente é o suficiente.
+            
+            grpc_request = contrato_pb2.UpdateSensorRequest(
+                sensor_id=sensor_id,
+                nome=nome,
+                descricao=descricao
+            )
+            
+            # Se você tem campos opcionais no .proto e quer enviar apenas os que foram realmente mudados
+            # no frontend (o que é mais comum para PUT/PATCH), você precisaria de uma lógica mais elaborada
+            # para construir o request, por exemplo:
+            # update_request_data = {'sensor_id': sensor_id}
+            # if nome is not None:
+            #     update_request_data['nome'] = nome
+            # if descricao is not None:
+            #     update_request_data['descricao'] = descricao
+            # grpc_request = contrato_pb2.UpdateSensorRequest(**update_request_data)
+
+            # Chama o método gRPC UpdateSensor
+            grpc_response = stub.UpdateSensor(grpc_request)
+
+            response_data = {
+                "mensagem": grpc_response.mensagem,
+                "sucesso": grpc_response.sucesso,
+                "updated_sensor": { # Retorna os dados do sensor atualizado, se disponíveis
+                    "sensor_id": grpc_response.updated_sensor.sensor_id,
+                    "nome": grpc_response.updated_sensor.nome,
+                    "descricao": grpc_response.updated_sensor.descricao
+                } if grpc_response.HasField('updated_sensor') else None # Verifica se o campo foi preenchido na resposta
+            }
+            
+            # Decide o status HTTP baseado no sucesso da operação
+            if grpc_response.sucesso:
+                return Response(response_data, status=status.HTTP_200_OK)
+            else:
+                # Se a operação gRPC não for bem-sucedida, retorna um 400 Bad Request
+                # ou 404 Not Found se o sensor não existia, dependendo da sua API Java.
+                # Aqui, estamos retornando 400 para erro lógico reportado pelo gRPC.
+                return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
+
+        except grpc.RpcError as e:
+            error_message = f"Erro gRPC ao atualizar sensor: {e.details}"
+            return Response({"error": error_message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            # Captura outros erros inesperados no Python
+            error_message = f"Erro inesperado ao processar requisição de atualização: {str(e)}"
+            return Response({"error": error_message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        finally:
+            channel.close()

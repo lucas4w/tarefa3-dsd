@@ -232,6 +232,37 @@ public final class MonitorServiceGrpc {
     return getGenerateDataMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<br.com.grpc.iot.UpdateSensorRequest,
+      br.com.grpc.iot.UpdateSensorResponse> getUpdateSensorMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateSensor",
+      requestType = br.com.grpc.iot.UpdateSensorRequest.class,
+      responseType = br.com.grpc.iot.UpdateSensorResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<br.com.grpc.iot.UpdateSensorRequest,
+      br.com.grpc.iot.UpdateSensorResponse> getUpdateSensorMethod() {
+    io.grpc.MethodDescriptor<br.com.grpc.iot.UpdateSensorRequest, br.com.grpc.iot.UpdateSensorResponse> getUpdateSensorMethod;
+    if ((getUpdateSensorMethod = MonitorServiceGrpc.getUpdateSensorMethod) == null) {
+      synchronized (MonitorServiceGrpc.class) {
+        if ((getUpdateSensorMethod = MonitorServiceGrpc.getUpdateSensorMethod) == null) {
+          MonitorServiceGrpc.getUpdateSensorMethod = getUpdateSensorMethod =
+              io.grpc.MethodDescriptor.<br.com.grpc.iot.UpdateSensorRequest, br.com.grpc.iot.UpdateSensorResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateSensor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.UpdateSensorRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  br.com.grpc.iot.UpdateSensorResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MonitorServiceMethodDescriptorSupplier("UpdateSensor"))
+              .build();
+        }
+      }
+    }
+    return getUpdateSensorMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -328,6 +359,13 @@ public final class MonitorServiceGrpc {
         io.grpc.stub.StreamObserver<br.com.grpc.iot.GenerateDataResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGenerateDataMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void updateSensor(br.com.grpc.iot.UpdateSensorRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.UpdateSensorResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateSensorMethod(), responseObserver);
+    }
   }
 
   /**
@@ -412,6 +450,14 @@ public final class MonitorServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGenerateDataMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void updateSensor(br.com.grpc.iot.UpdateSensorRequest request,
+        io.grpc.stub.StreamObserver<br.com.grpc.iot.UpdateSensorResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateSensorMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -477,6 +523,13 @@ public final class MonitorServiceGrpc {
     public br.com.grpc.iot.GenerateDataResponse generateData(br.com.grpc.iot.GenerateDataRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGenerateDataMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public br.com.grpc.iot.UpdateSensorResponse updateSensor(br.com.grpc.iot.UpdateSensorRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateSensorMethod(), getCallOptions(), request);
     }
   }
 
@@ -551,6 +604,14 @@ public final class MonitorServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGenerateDataMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<br.com.grpc.iot.UpdateSensorResponse> updateSensor(
+        br.com.grpc.iot.UpdateSensorRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateSensorMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTRAR_USUARIO = 0;
@@ -560,6 +621,7 @@ public final class MonitorServiceGrpc {
   private static final int METHODID_LISTAR_SENSORES = 4;
   private static final int METHODID_GET_DADOS = 5;
   private static final int METHODID_GENERATE_DATA = 6;
+  private static final int METHODID_UPDATE_SENSOR = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -605,6 +667,10 @@ public final class MonitorServiceGrpc {
         case METHODID_GENERATE_DATA:
           serviceImpl.generateData((br.com.grpc.iot.GenerateDataRequest) request,
               (io.grpc.stub.StreamObserver<br.com.grpc.iot.GenerateDataResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_SENSOR:
+          serviceImpl.updateSensor((br.com.grpc.iot.UpdateSensorRequest) request,
+              (io.grpc.stub.StreamObserver<br.com.grpc.iot.UpdateSensorResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -673,6 +739,13 @@ public final class MonitorServiceGrpc {
               br.com.grpc.iot.GenerateDataRequest,
               br.com.grpc.iot.GenerateDataResponse>(
                 service, METHODID_GENERATE_DATA)))
+        .addMethod(
+          getUpdateSensorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              br.com.grpc.iot.UpdateSensorRequest,
+              br.com.grpc.iot.UpdateSensorResponse>(
+                service, METHODID_UPDATE_SENSOR)))
         .build();
   }
 
@@ -728,6 +801,7 @@ public final class MonitorServiceGrpc {
               .addMethod(getListarSensoresMethod())
               .addMethod(getGetDadosMethod())
               .addMethod(getGenerateDataMethod())
+              .addMethod(getUpdateSensorMethod())
               .build();
         }
       }

@@ -1,42 +1,39 @@
+// src/components/EditSensorButton.tsx
 import React, { useState } from 'react';
-import NewSensorForm from './SensorForm';
-import { useParams } from 'react-router-dom'; 
+import SensorForm from './SensorForm';
+import type { Sensor } from '../types/api';
 
-interface NewSensorButtonProps {
-  onSensorRegistered: () => void;
+interface EditSensorButtonProps {
+  userId: number;
+  sensor: Sensor; // sensor.sensor_id é string aqui
+  onSensorUpdated: () => void;
 }
 
-const NewSensorButton: React.FC<NewSensorButtonProps> = ({ onSensorRegistered }) => {
-  const { userId } = useParams<{ userId: string }>(); 
+const EditSensorButton: React.FC<EditSensorButtonProps> = ({ userId, sensor, onSensorUpdated }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleSensorFormSuccess = () => {
     handleCloseModal();
-    onSensorRegistered();
+    onSensorUpdated();
   };
 
   return (
     <div>
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
+        className="mt-4 mr-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded text-sm disabled:opacity-50"
         onClick={handleOpenModal}
       >
-        Registrar Novo Sensor
+        Editar
       </button>
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md mx-auto">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Registrar Novo Sensor</h2>
+              <h2 className="text-xl font-bold">Editar Sensor: {sensor.nome}</h2>
               <button
                 className="text-gray-500 hover:text-gray-800 text-2xl"
                 onClick={handleCloseModal}
@@ -44,8 +41,9 @@ const NewSensorButton: React.FC<NewSensorButtonProps> = ({ onSensorRegistered })
                 &times;
               </button>
             </div>
-            <NewSensorForm
-              userId={Number(userId)} 
+            <SensorForm
+              userId={userId}
+              sensorData={sensor} // sensor.sensor_id é string aqui
               onSuccess={handleSensorFormSuccess}
               onClose={handleCloseModal}
             />
@@ -56,4 +54,4 @@ const NewSensorButton: React.FC<NewSensorButtonProps> = ({ onSensorRegistered })
   );
 };
 
-export default NewSensorButton;
+export default EditSensorButton;
